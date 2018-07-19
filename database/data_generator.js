@@ -26,3 +26,16 @@ const nouns = [ 'ninja', 'chair', 'pancake', 'statue', 'unicorn', 'rainbows', 'l
 'beader', 'bobbin boy', 'clerk of the chapel', 'filling station attendant', 'foreman',
 'maintenance engineering', 'mechanic', 'miller', 'moldmaker', 'panel beater', 'patternmaker',
 'plant operator', 'sawfiler', 'soaper', 'stationary engineer', 'wheelwright', 'woodworkers'];
+
+const randomEl = function(list) {
+    var i = Math.floor(Math.random() * list.length);
+    return list[i];
+}
+
+const getRandomName = function() {
+  return randomEl(starters) + ' ' + randomEl(adjectives) + ' ' + randomEl(nouns);
+}
+const getRandomBoolean = function() {
+  const bools = [true, false];
+  return randomEl(bools);
+}

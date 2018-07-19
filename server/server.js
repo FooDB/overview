@@ -1,7 +1,9 @@
-const express = require('express');
-const db = require('../database/index.js');
+const express = require('express')
 const app = express();
+var path = require('path');
+const db = require('../database/index.js');
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
 
 app.listen(3001, () => console.log('App listening on port 3001!'));

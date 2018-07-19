@@ -9,7 +9,6 @@
   },
   "scripts": {
     "server-dev": "nodemon server/server.js",
-    "setbabel": "babel client -w --out-dir public --presets=env,react --source-maps inline",
     "react-dev": "webpack -d --watch"
   },
   "dependencies": {},
@@ -20,8 +19,11 @@
     "babel-preset-react": "^6.24.1",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "express": "^4.16.3",
+    "mongodb": "^3.1.1",
     "mongoose": "^5.2.4",
     "nodemon": "^1.18.3",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
     "webpack": "^4.16.1",
     "webpack-cli": "^3.1.0"
   }
