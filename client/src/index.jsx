@@ -8,8 +8,8 @@ class Overview extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1> The overview will go here</h1>
+      <div id="overview-section">
+        this will disappear when other components render
       </div>
     );
   }

@@ -27,7 +27,9 @@ const nouns = [ 'ninja', 'chair', 'pancake', 'statue', 'unicorn', 'rainbows', 'l
 'beader', 'bobbin boy', 'clerk of the chapel', 'filling station attendant', 'foreman',
 'maintenance engineering', 'mechanic', 'miller', 'moldmaker', 'panel beater', 'patternmaker',
 'plant operator', 'sawfiler', 'soaper', 'stationary engineer', 'wheelwright', 'woodworkers'];
-
+const cuisine = ['thai', 'french', 'steak', 'italian', 'japanese', 'indian', 'cajun/creole',
+'pizza', 'malayasian', 'gastropub', 'american new', 'california', 'vegan', 'vegetarian',
+'steakhouse', 'sushi', 'molecular gastronomy'];
 const randomEl = function(list) {
     var i = Math.floor(Math.random() * list.length);
     return list[i];
@@ -37,29 +39,36 @@ const getRandomName = function() {
   return randomEl(starters) + ' ' + randomEl(adjectives) + ' ' + randomEl(nouns);
 }
 
+const getRandomAddress = function() {
+  const street = faker.address.streetAddress();
+  const city = faker.address.city();
+  const state = faker.address.stateAbbr();
+  const zipcode = faker.address.zipCode();
 
+  return street + ' ' + city + ', '+ state +' ' + zipcode;
+}
 
 
 
 const generatePrimaryRecord = function() {
   const primaryRecord = {};
-  primaryRecord[name] =
+  primaryRecord[name] = getRandomName();
   primaryRecord[description] = faker.lorem.paragraph();
   primaryRecord[phone] = faker.phone.phoneNumber();
   primaryRecord[website] = faker.internet.url();
   primaryRecord[giftcard] =
-  primaryRecord[avgrating] =
-  primaryRecord[numratings] =
+  primaryRecord[avgrating] = Math.floor(Math.random() * Math.floor(5));
+  primaryRecord[numratings] = Math.floor(Math.random() * Math.floor(5000));
   primaryRecord[toptags] =
   primaryRecord[additionaltags] =
-  primaryRecord[cuisines] =
+  primaryRecord[cuisines] = 
   primaryRecord[pricerange] =
   primaryRecord[paymentoptions] =
-  primaryRecord[address] =
-  primaryRecord[neighborhood] =
-  primaryRecord[crossstreet] =
+  primaryRecord[address] = getRandomAddress();
+  primaryRecord[neighborhood] = faker.address.county();
+  primaryRecord[crossstreet] = faker.address.streetName();
   primaryRecord[parking] =
-  primaryRecord[style] =
+  primaryRecord[style] = 
   primaryRecord[dresscode] =
   primaryRecord[chef] = faker.name.firstName() + ' ' + faker.name.lastName();
   primaryRecord[privateparty] =
