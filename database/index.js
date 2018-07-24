@@ -1,3 +1,4 @@
 var mongoose = require('mongoose');
-var db =('mongodb://127.0.0.1:3001/overview');
-mongoose.connect(db);
+var db ='mongodb://localhost:27017/overview';
+mongoose.connect(db,{ useNewUrlParser: true });
+
