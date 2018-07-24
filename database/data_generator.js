@@ -27,6 +27,7 @@ const nouns = [ 'ninja', 'chair', 'pancake', 'statue', 'unicorn', 'rainbows', 'l
 'beader', 'bobbin boy', 'clerk of the chapel', 'filling station attendant', 'foreman',
 'maintenance engineering', 'mechanic', 'miller', 'moldmaker', 'panel beater', 'patternmaker',
 'plant operator', 'sawfiler', 'soaper', 'stationary engineer', 'wheelwright', 'woodworkers'];
+
 const cuisine = ['thai', 'french', 'steak', 'italian', 'japanese', 'indian', 'cajun/creole',
 'pizza', 'malayasian', 'gastropub', 'american new', 'california', 'vegan', 'vegetarian',
 'steakhouse', 'sushi', 'molecular gastronomy'];
