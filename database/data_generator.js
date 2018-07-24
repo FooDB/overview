@@ -42,7 +42,7 @@ const getRandomName = function() {
 
 
 const generatePrimaryRecord = function() {
-  var primaryRecord = {};
+  const primaryRecord = {};
   primaryRecord[name] =
   primaryRecord[description] = faker.lorem.paragraph();
   primaryRecord[phone] = faker.phone.phoneNumber();
