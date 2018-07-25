@@ -16,6 +16,10 @@ class Header extends React.Component {
           <div id="header">
             <h1>{this.name}</h1>
             <span id="stars">{this.stars} </span>
+            <span id="reviews">{this.reviews}</span>
+            <span id="range">{this.range}</span>
+            <span id="cuisine">{this.cuisine}</span>
+            <div id="toptags">{this.props.data.toptags}</div>
           </div>
         );
       }
