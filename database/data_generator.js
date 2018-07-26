@@ -49,6 +49,16 @@ const getRandomAddress = function() {
   return street + ' ' + city + ', '+ state +' ' + zipcode;
 }
 
+const getRandomCuisines = function() {
+  const size = faker.random.number() % 10;
+  const cuisines = [];
+
+  for (const i = 0; i < size; i ++) {
+    cuisines.push(randomEl(cuisine));
+  }
+
+  return cuisines;
+}
 
 
 const generatePrimaryRecord = function() {
@@ -57,23 +67,23 @@ const generatePrimaryRecord = function() {
   primaryRecord[description] = faker.lorem.paragraph();
   primaryRecord[phone] = faker.phone.phoneNumber();
   primaryRecord[website] = faker.internet.url();
-  primaryRecord[giftcard] =
+  primaryRecord[giftcard] = Math.random() >= 0.5;
   primaryRecord[avgrating] = Math.floor(Math.random() * Math.floor(5));
   primaryRecord[numratings] = Math.floor(Math.random() * Math.floor(5000));
-  primaryRecord[toptags] =
-  primaryRecord[additionaltags] =
-  primaryRecord[cuisines] = 
-  primaryRecord[pricerange] =
+  primaryRecord[toptags] = faker.lorem.sentence.split(" ");
+  primaryRecord[additionaltags] = faker.lorem.sentence.split(" ");
+  primaryRecord[cuisines] = getRandomCuisines();
+  primaryRecord[pricerange] = 
   primaryRecord[paymentoptions] =
   primaryRecord[address] = getRandomAddress();
   primaryRecord[neighborhood] = faker.address.county();
   primaryRecord[crossstreet] = faker.address.streetName();
-  primaryRecord[parking] =
+  primaryRecord[parking] = Math.random() >= 0.5;
   primaryRecord[style] = 
   primaryRecord[dresscode] =
   primaryRecord[chef] = faker.name.firstName() + ' ' + faker.name.lastName();
-  primaryRecord[privateparty] =
-  primaryRecord[ppfacilities] =
-  primaryRecord[ppcontact] = faker.phone.phoneNumber();
-  primaryRecord[catering] =
+  primaryRecord[privateparty] =  Math.random() >= 0.5;
+  primaryRecord[ppfacilities] = faker.phone.phoneNumberFormat();
+  primaryRecord[ppcontact] = faker.phone.phoneNumberFormat();
+  primaryRecord[catering] = Math.random() >= 0.5;
 }
