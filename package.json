@@ -1,13 +1,14 @@
 {
-  "name": "OpenTableOverview",
+  "name": "Overview",
   "version": "",
-  "description": "",
+  "description": "Module for Overview like OpenTable",
   "author": "Shruti Rajagopal",
   "license": "",
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
+    "seed": "node ./database/data_generator.js",
     "server-dev": "nodemon server/server.js",
     "react-dev": "webpack -d --watch"
   },
