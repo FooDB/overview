@@ -39,7 +39,5 @@ let Overview = mongoose.Schema({
 let OverviewModel = mongoose.model('Overview', Overview);
 
 module.exports = {
-    get,
-    post,
     Overview
 };
