@@ -16,7 +16,6 @@ const adjectives = ['adroit', 'animistic', 'antic', 'arcadian', 'baleful',
   'sartorial', 'sclerotic', 'serpentine', 'spasmodic', 'strident', 'taciturn', 'tenacious',
   'tremulous', 'turbulent', 'turgid', 'ubiquitous', 'uxorious', 'verdant', 'voluble',
   'voracious', 'wheedling', 'withering', 'zealous'];
-
 const nouns = [ 'ninja', 'chair', 'pancake', 'statue', 'unicorn', 'rainbows', 'laser',
 'senor', 'bunny', 'captain', 'nibblets', 'cupcake', 'carrot', 'gnomes', 'glitter',
 'potato', 'salad', 'toejam', 'curtains', 'beets', 'toilet', 'exorcism', 'stick figures',
@@ -29,19 +28,22 @@ const nouns = [ 'ninja', 'chair', 'pancake', 'statue', 'unicorn', 'rainbows', 'l
 'beader', 'bobbin boy', 'clerk of the chapel', 'filling station attendant', 'foreman',
 'maintenance engineering', 'mechanic', 'miller', 'moldmaker', 'panel beater', 'patternmaker',
 'plant operator', 'sawfiler', 'soaper', 'stationary engineer', 'wheelwright', 'woodworkers'];
-
 const cuisine = ['thai', 'french', 'steak', 'italian', 'japanese', 'indian', 'cajun/creole',
 'pizza', 'malayasian', 'gastropub', 'american new', 'california', 'vegan', 'vegetarian',
-'steakhouse', 'sushi', 'molecular gastronomy'];
+'steakhouse', 'sushi', 'molecular gastronomy', 'mediteranean'];
+const payment = ['Visa', 'Discover', 'Mastercard', 'American Express', 'cash', 'check'];
+const tags = faker.lorem.sentence().split(' ');
+const meals = ['Breakfast', 'Brunch', 'Lunch', 'Dinner', 'Bar'];
+const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const times = ['Closed', '9AM - Noon', '9AM - 3PM', 'Noon - 3PM', '5PM - 9PM', '5PM - 2AM'];
 
-const payment = ['Visa', 'Discover', 'Mastercard', 'American Express'];
 
-const randomEl = function(list) {
-    const i = Math.floor(Math.random() * list.length);
+const randomEl = (list) => {
+  let i = Math.floor(Math.random() * list.length);
     return list[i];
 }
 
-const getRandomName = function() {
+const getRandomName = () => {
   return randomEl(starters) + ' ' + randomEl(adjectives) + ' ' + randomEl(nouns);
 }
 
@@ -54,76 +56,107 @@ const getRandomAddress = function() {
   return street + ' ' + city + ', '+ state +' ' + zipcode;
 }
 
-const getRandomCuisines = function() {
-  const size = faker.random.number() % 10;
-  const cuisines = [];
 
-  for (const i = 0; i < size; i ++) {
-    cuisines.push(randomEl(cuisine));
+const generalInfo = () => {
+  let info = {
+    restaurant_name: getRandomName(),
+    description: faker.lorem.sentences(),
+    telephone: faker.phone.phoneNumberFormat(),
+    website: faker.internet.url(),
+    chef: faker.name.findName(),
+    avg_rating: Math.floor(Math.random() * 5),
+    num_ratings: Math.floor(Math.random() * 10000),
+    style: faker.lorem.words(),
+    dress_code: faker.lorem.words(),
+    catering: faker.lorem.sentences(),
+    price_range: faker.lorem.words(),
+    private_dining: faker.lorem.sentences(),
+    private_url: faker.internet.url(),
+    latitude: faker.address.latitude(),
+    longitude: faker.address.longitude(),
+    addr: getRandomAddress(),
+    cross_street: faker.address.streetAddress(),
+    parking: faker.lorem.sentences(),
+    public_transport: faker.lorem.sentences()
+  };
+  
+  return info;
+}
+
+const insertOverviews = () => {
+  for (let i = 0; i < 100; i ++) {
+    //General
+    let general = generalInfo();
+
+    let generalQuery = `INSERT INTO General (restaurant_name, description, telephone, website, chef,
+    avg_rating, num_ratings, style, dress_code, catering, price_range, private_dining,
+    private_url, latitude, longitude, addr, cross_street, parking, public_transport) 
+    VALUES ('${general.restaurant_name}', '${general.description}', '${general.telephone}', '${general.website}', '${general.chef}',
+    '${general.avg_rating}', '${general.num_ratings}', '${general.style}', '${general.dress_code}', '${general.catering}', '${general.price_range}', '${general.private_dining}',
+    '${general.private_url}', '${general.latitude}', '${general.longitude}', '${general.addr}', '${general.cross_street}', '${general.parking}', '${general.public_transport}');`;
+    
+    db.connection.query(generalQuery, (err, result) => {
+      if (err) { 
+        console.log(err);
+      } else {
+        console.log(result);
+      }
+    });
+    //Payment Options
+    let paymentLen = Math.floor(Math.random * payment.length);
+    for (let j = 0; j < paymentLen; j ++) {
+      let paymentQuery = `INSERT INTO Payment_Options (opt, rest_id) VALUES ('${randomEl(payment)}',${i});`;
+
+      db.connection.query(paymentQuery, (err, result) => {
+        if (err) { 
+          console.log(err);
+        } else {
+          console.log(result);
+        }
+      });
+    }
+    //Cuisines
+    let cuisineLen = Math.floor(Math.random * cuisine.length);
+    for (let k = 0; k < cuisineLen; k ++) {
+      let cuisineQuery = `INSERT INTO Cuisines (cuisine, top_cuisine, rest_id) Values('${randomEl(cuisine)}', '${Math.round(Math.random())}', ${i});`;
+
+      db.connection.query(cuisineQuery, (err, result) => {
+        if (err) { 
+          console.log(err);
+        } else {
+          console.log(result);
+        }
+      });
+    }
+    //Tags
+    let tagLen = Math.floor(Math.random * tags.length);
+    for(let x = 0; x < tagLen; x ++) {
+      let tagQuery = `INSERT INTO Tags (tag, top_tag, rest_id) Values('${randomEl(tags)}', '${Math.round(Math.random())}', ${i});`;
+
+      db.connection.query(tagQuery, (err, result) => {
+        if (err) { 
+          console.log(err);
+        } else {
+          console.log(result);
+        }
+      });
+    }
+
+    //Hours
+    let hoursLen = Math.floor(Math.random * meals.length);
+
+    for (let y = 0; y < hoursLen; y ++) {
+      let hourQuery = `INSERT INTO Hours (meal, day_name, time_range, rest_id) VALUES('${randomEl(meals)}', '${randomEl(days)}', '${randomEl(times)}', ${i});`;
+      
+      db.connection.query(hourQuery, (err, result) => {
+        if (err) { 
+          console.log(err);
+        } else {
+          console.log(result);
+        }
+      });
+    }
   }
-
-  return cuisines;
 }
 
-const randomPayment = function () {
-  const size = Math.floor(Math.random() * list.length);
-  const result = [];
-  for(var i = 0; i < size; i ++) {
-    result.push(randomEl(payment));
-  }
-
-  return result;
-}
-
-
-
-const generatePrimaryRecord = function() {
-  const primaryRecord = {};
-  primaryRecord[name] = getRandomName();
-  primaryRecord[description] = faker.lorem.paragraph();
-  primaryRecord[phone] = faker.phone.phoneNumber();
-  primaryRecord[website] = faker.internet.url();
-  primaryRecord[giftcard] = Math.random() >= 0.5;
-  primaryRecord[avgrating] = Math.floor(Math.random() * Math.floor(5));
-  primaryRecord[numratings] = Math.floor(Math.random() * Math.floor(5000));
-  primaryRecord[toptags] = faker.lorem.sentence.split(" ");
-  primaryRecord[additionaltags] = faker.lorem.sentence.split(" ");
-  primaryRecord[cuisines] = getRandomCuisines();
-  primaryRecord[pricerange] = Math.floor(Math.random() * Math.floor(3));
-  primaryRecord[paymentoptions] = randomPayment();
-  primaryRecord[address] = getRandomAddress();
-  primaryRecord[neighborhood] = faker.address.county();
-  primaryRecord[crossstreet] = faker.address.streetName();
-  primaryRecord[parking] = Math.random() >= 0.5;
-  primaryRecord[style] = faker.lorem.words();
-  primaryRecord[dresscode] = faker.lorem.sentence();
-  primaryRecord[chef] = faker.name.firstName() + ' ' + faker.name.lastName();
-  primaryRecord[privateparty] =  Math.random() >= 0.5;
-  primaryRecord[ppfacilities] = faker.phone.phoneNumberFormat();
-  primaryRecord[ppcontact] = faker.phone.phoneNumberFormat();
-  primaryRecord[catering] = Math.random() >= 0.5;
-  primaryRecord[coordinates] = [faker.address.longitude(), faker.address.latitude()];
-  primaryRecord[hours] = {
-    Breakfast: "9AM - 12PM",
-    Lunch: "12PM - 3PM",
-    Dinner: "5PM - 10PM"
-    };
-
-    return primaryRecord;
-}
-
-const generateSet =  function() {
-  const set = [];
-  for (let i = 0; i < 101; i ++) {
-    var rest = generatePrimaryRecord();
-    set.push(rest);
-  }
-
-  return set;
-}
-
-const dataset = generateSet();
-
-module.exports = {
-  dataset
-};
+insertOverviews();
