@@ -1,4 +1,4 @@
-const db = require('index.js').Overview;
+const db = require('./index.js');
 const faker = require('faker');
 
 const starters = ['the', 'a'];
@@ -123,7 +123,7 @@ const generateSet =  function() {
 }
 
 const dataset = generateSet();
-Overview.insertMany(dataset, () => {});
+
 module.exports = {
   dataset
 };
