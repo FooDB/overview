@@ -31,13 +31,10 @@ class Description extends React.Component {
 
     render() {
       const isHidden = this.state.isHidden;
-      let text;
+      let text = isHidden ? 
+        <Text text={this.props.description.slice(0, Math.floor(this.props.description.length / 2))}/> :
+        <Text text={this.props.description}/>;
       
-      if(isHidden) {
-        text = <Text text={this.props.description.slice(0, Math.floor(this.props.description.length / 2))}/>
-      } else {
-        text = <Text text={this.props.description}/>
-      }
         return (
           <div>
               {text}
