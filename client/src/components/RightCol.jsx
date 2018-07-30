@@ -36,7 +36,7 @@ class RightCol extends React.Component {
 
             <div id="additional">
               <h2> Additional </h2>
-              <div>{'balnk'}</div> 
+              <div>{this.props.data.additional.join(', ')}</div> 
             </div>
           </div>
         );

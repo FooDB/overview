@@ -17,6 +17,7 @@ class Overview extends React.Component {
       avg_rating: 0,
       num_ratings: 0,
       price_range: 'undefined',
+      top_tags:[],
       
       //description
       description: 'undefined',
@@ -39,7 +40,8 @@ class Overview extends React.Component {
       neighborhood: 'undefined',
       cross_street: 'undefined',
       parking: 'undefined',
-      public_transport: 'undefined'
+      public_transport: 'undefined',
+      additional_tags:[]
       
     };
     this.getGeneralInfo = this.getGeneralInfo.bind(this);
@@ -49,15 +51,40 @@ class Overview extends React.Component {
     this.getGeneralInfo();
     this.getPaymentInfo(); 
     // this.getCuisineInfo();
-    // this.getTagsInfo();
+    this.getTagsInfo();
     // this.getHoursInfo();
+  }
+
+  getTagsInfo() {
+    axios.get(`tags/${2}`)
+    .then(result => {
+      console.log(result.data);
+
+      const top = [];
+      const additional = [];
+      for(let i = 0; i < result.data.length; i ++) {
+        let name = result.data[i].tag;
+        let isTop = result.data[i].top_tag ;
+
+        if (isTop === 1 && !top.includes(name) && !additional.includes(name)) {
+          top.push(name);
+        } else if (!additional.includes(name) && !top.includes(name)) {
+          additional.push(name);
+        }
+      }
+
+      this.setState({
+        top_tags: top,
+        additional_tags: additional
+      });
+    })
+    .catch(err => console.log(err));
   }
 
   getGeneralInfo() {
     axios.get(`general/${2}`)
     .then(result => {
       let data = result.data[0];
-      console.log(data);
       this.setState({
         restaurant_name: data.restaurant_name,
         description: data.description,
@@ -88,7 +115,6 @@ class Overview extends React.Component {
     axios.get(`payments/${2}`)
     .then(result => {
       let data = result.data;
-      console.log(data);
 
       const options = [];
       for(let i = 0; i < data.length; i ++) {
@@ -112,7 +138,8 @@ class Overview extends React.Component {
             name: this.state.restaurant_name,
             stars: this.state.avg_rating,
             reviews: this.state.num_ratings,
-            range: this.state.price_range
+            range: this.state.price_range,
+            top: this.state.top_tags
           }
         }/>
         <Description description={this.state.description}/>
@@ -144,7 +171,8 @@ class Overview extends React.Component {
                 neighborhood: this.state.neighborhood,           
                 cross_street: this.state.cross_street,
                 parking: this.state.parking,
-                public_transport: this.state.public_transport
+                public_transport: this.state.public_transport,
+                additional: this.state.additional_tags
               }
             }/>
           </div>

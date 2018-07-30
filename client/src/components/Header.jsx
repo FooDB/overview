@@ -13,6 +13,7 @@ class Header extends React.Component {
           <span id="stars">{this.props.data.stars} </span>
           <span id="reviews">{this.props.data.reviews}</span>
           <span id="range">{this.props.data.range}</span>
+          <div id="tags">{this.props.data.top.join(', ')}</div>
         </div>
       );
     }
