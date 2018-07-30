@@ -99,11 +99,11 @@ const insertOverviews = () => {
       if (err) { 
         console.log(err);
       } else {
-        console.log(result);
+        console.log('general');
       }
     });
     //Payment Options
-    let paymentLen = Math.floor(Math.random * payment.length);
+    let paymentLen = 10;
     for (let j = 0; j < paymentLen; j ++) {
       let paymentQuery = `INSERT INTO Payment_Options (opt, rest_id) VALUES ('${randomEl(payment)}',${i});`;
 
@@ -111,12 +111,12 @@ const insertOverviews = () => {
         if (err) { 
           console.log(err);
         } else {
-          console.log(result);
+          console.log('payments');
         }
       });
     }
     //Cuisines
-    let cuisineLen = Math.floor(Math.random * cuisine.length);
+    let cuisineLen = 5;
     for (let k = 0; k < cuisineLen; k ++) {
       let cuisineQuery = `INSERT INTO Cuisines (cuisine, top_cuisine, rest_id) Values('${randomEl(cuisine)}', '${Math.round(Math.random())}', ${i});`;
 
@@ -124,12 +124,12 @@ const insertOverviews = () => {
         if (err) { 
           console.log(err);
         } else {
-          console.log(result);
+          console.log("cuisines");
         }
       });
     }
     //Tags
-    let tagLen = Math.floor(Math.random * tags.length);
+    let tagLen = 20;
     for(let x = 0; x < tagLen; x ++) {
       let tagQuery = `INSERT INTO Tags (tag, top_tag, rest_id) Values('${randomEl(tags)}', '${Math.round(Math.random())}', ${i});`;
 
@@ -137,13 +137,13 @@ const insertOverviews = () => {
         if (err) { 
           console.log(err);
         } else {
-          console.log(result);
+          console.log('tags');
         }
       });
     }
 
     //Hours
-    let hoursLen = Math.floor(Math.random * meals.length);
+    let hoursLen = 3;
 
     for (let y = 0; y < hoursLen; y ++) {
       let hourQuery = `INSERT INTO Hours (meal, day_name, time_range, rest_id) VALUES('${randomEl(meals)}', '${randomEl(days)}', '${randomEl(times)}', ${i});`;
@@ -152,7 +152,7 @@ const insertOverviews = () => {
         if (err) { 
           console.log(err);
         } else {
-          console.log(result);
+          console.log('hours');
         }
       });
     }

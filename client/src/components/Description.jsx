@@ -4,11 +4,11 @@ class Description extends React.Component {
     constructor(props) {
         super(props);
     }
-
+    
     render() {
         return (
           <div id="description">
-            this is a descriptiom elem
+            {this.props.description}
           </div>
         );
       }
