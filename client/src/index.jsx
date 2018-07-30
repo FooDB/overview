@@ -47,7 +47,7 @@ class Overview extends React.Component {
 
   componentDidMount() {
     this.getGeneralInfo();
-    this.getPaymentInfo();
+    this.getPaymentInfo(); 
     // this.getCuisineInfo();
     // this.getTagsInfo();
     // this.getHoursInfo();
