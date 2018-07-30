@@ -5,6 +5,14 @@
  *   https://github.com/reactorcore/eslint-config-hackreactor
  */
 
+process.chdir (__dirname);
 module.exports = {
-  extends: './node_modules/eslint-config-hackreactor/index.js'
+  root: true,
+  parser: 'babel-eslint',
+  parserOptions: {
+    allowImportExportEverywhere: true,
+    codeFrame: false,
+  },
+  extends: ['airbnb'],
+  plugins: ['react', 'jsx-ally', 'import'],
 };
