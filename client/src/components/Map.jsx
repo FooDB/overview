@@ -1,13 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 
 class Map extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-          longitude: null,
-          latitude: null
-        }
     }
 
     componentDidMount() {
@@ -23,7 +18,8 @@ class Map extends React.Component {
     render() {
         return (
           <div id="map">
-            this is a map elem
+            This is a map
+            {console.log(this.props.data)}
           </div>
         );
       }

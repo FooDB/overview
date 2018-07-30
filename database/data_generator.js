@@ -75,6 +75,7 @@ const generalInfo = () => {
     latitude: faker.address.latitude(),
     longitude: faker.address.longitude(),
     addr: getRandomAddress(),
+    neighborhood: faker.address.county(),
     cross_street: faker.address.streetAddress(),
     parking: faker.lorem.sentences(),
     public_transport: faker.lorem.sentences()
@@ -90,10 +91,10 @@ const insertOverviews = () => {
 
     let generalQuery = `INSERT INTO General (restaurant_name, description, telephone, website, chef,
     avg_rating, num_ratings, style, dress_code, catering, price_range, private_dining,
-    private_url, latitude, longitude, addr, cross_street, parking, public_transport) 
+    private_url, latitude, longitude, addr, neighborhood, cross_street, parking, public_transport) 
     VALUES ('${general.restaurant_name}', '${general.description}', '${general.telephone}', '${general.website}', '${general.chef}',
     '${general.avg_rating}', '${general.num_ratings}', '${general.style}', '${general.dress_code}', '${general.catering}', '${general.price_range}', '${general.private_dining}',
-    '${general.private_url}', '${general.latitude}', '${general.longitude}', '${general.addr}', '${general.cross_street}', '${general.parking}', '${general.public_transport}');`;
+    '${general.private_url}', '${general.latitude}', '${general.longitude}', '${general.addr}','${general.neighborhood}' ,'${general.cross_street}', '${general.parking}', '${general.public_transport}');`;
     
     db.connection.query(generalQuery, (err, result) => {
       if (err) { 

@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 
 class RightCol extends React.Component {
     constructor(props) {
@@ -9,12 +8,36 @@ class RightCol extends React.Component {
     render() {
         return (
           <div id="rightcol">
-            <div id="address"> Address url</div>
-            <div id="neighborhood"> Neighborhood </div>
-            <div id="crossStreet"> Cross street </div>
-            <div id="parking"> Parking details </div>
-            <div id="publicTransit"> Public transit </div>
-            <div id="additional"> Additional </div>
+            <div id="address">
+              <h2> Address url </h2>
+              <div>{this.props.data.addr}</div>
+            </div>
+
+            <div id="neighborhood">
+              <h2> Neighborhood </h2>
+              <div>{this.props.data.neighborhood}</div>
+             </div>
+
+            <div id="crossStreet">
+              <h2> Cross street </h2>
+              <div>{this.props.data.cross_street}</div> 
+            </div>
+
+            <div id="parking">
+              <h2> Parking details </h2>
+              <div>{this.props.data.parking}</div>
+
+            </div>
+
+            <div id="publicTransport">
+              <h2> Public transit </h2>
+              <div>{this.props.data.public_transport}</div>
+            </div>
+
+            <div id="additional">
+              <h2> Additional </h2>
+              <div>{'balnk'}</div> 
+            </div>
           </div>
         );
       }
