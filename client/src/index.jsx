@@ -6,46 +6,13 @@ import LeftCol from './components/LeftCol.jsx';
 import Map from './components/Map.jsx';
 import RightCol from './components/RightCol.jsx';
 import PrivateDining from './components/PrivateDining.jsx'
+import defaultData from './defaultData.js';
 import axios from 'axios';
 
 class Overview extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      //header
-      restaurant_name: 'undefined',
-      avg_rating: 0,
-      num_ratings: 0,
-      price_range: 'undefined',
-      top_tags:[],
-      
-      //description
-      description: 'undefined',
-
-      //map
-      latitude: 0.00,
-      longitude: 0.00,
-      
-      //leftcol
-      private_url: 'www.google.com',
-      style: 'undefined',
-      cuisines: [],
-      hours:{},
-      telephone: 'undefined',
-      website: 'www.google.com',
-      payment_options: [],
-      dress_code: 'undefined',
-      chef: 'undefined',
-      catering: 'undefined',
-
-      //rightcol
-      neighborhood: 'undefined',
-      cross_street: 'undefined',
-      parking: 'undefined',
-      public_transport: 'undefined',
-      additional_tags:[]
-      
-    };
+    this.state = defaultData;
     this.getGeneralInfo = this.getGeneralInfo.bind(this);
   }
 

@@ -24,3 +24,6 @@ coverage
 build/
 dist/
 
+#config files
+database/config.js
+
