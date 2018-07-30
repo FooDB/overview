@@ -19,7 +19,7 @@ class Map extends React.Component {
     return (
       <div id="map">
         This is a map
-        {console.log (this.props.data)}
+        {console.log (this.props)}
       </div>
     );
   }

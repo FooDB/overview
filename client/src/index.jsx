@@ -144,49 +144,41 @@ class Overview extends React.Component {
     return (
       <div id="overview-section">
         <Header
-          data={{
-            name: this.state.restaurant_name,
-            stars: this.state.avg_rating,
-            reviews: this.state.num_ratings,
-            range: this.state.price_range,
-            top: this.state.top_tags,
-            cuisine: this.state.cuisines[0],
-          }}
+          name={this.state.restaurant_name}
+          stars={this.state.avg_rating}
+          reviews={this.state.num_ratings}
+          range={this.state.price_range}
+          top={this.state.top_tags}
+          cuisine={this.state.cuisines[0]}
         />
         <Description description={this.state.description} />
         <div id="body">
           <div id="left">
             <LeftCol
-              data={{
-                private_url: this.state.private_url,
-                style: this.state.style,
-                cuisines: this.state.cuisines,
-                hours: this.state.hours,
-                telephone: this.state.telephone,
-                website: this.state.website,
-                payment_options: this.state.payment_options,
-                dress_code: this.state.dress_code,
-                chef: this.state.chef,
-                catering: this.state.catering,
-              }}
+              private_url={this.state.private_url}
+              style={this.state.style}
+              cuisines={this.state.cuisines}
+              hours={this.state.hours}
+              telephone={this.state.telephone}
+              website={this.state.website}
+              payment_options={this.state.payment_options}
+              dress_code={this.state.dress_code}
+              chef={this.state.chef}
+              catering={this.state.catering}
             />
           </div>
           <div id="right">
             <Map
-              data={{
-                longitude: this.state.longitude,
-                latittude: this.state.latitude,
-              }}
+              longitude={this.state.longitude}
+              latitude={this.state.latitude}
             />
             <RightCol
-              data={{
-                addr: this.state.addr,
-                neighborhood: this.state.neighborhood,
-                cross_street: this.state.cross_street,
-                parking: this.state.parking,
-                public_transport: this.state.public_transport,
-                additional: this.state.additional_tags,
-              }}
+              addr={this.state.addr}
+              neighborhood={this.state.neighborhood}
+              cross_street={this.state.cross_street}
+              parking={this.state.parking}
+              public_transport={this.state.public_transport}
+              additional={this.state.additional_tags}
             />
           </div>
         </div>

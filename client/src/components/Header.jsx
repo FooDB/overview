@@ -9,12 +9,12 @@ class Header extends React.Component {
   render () {
     return (
       <div id="header">
-        <h1>{this.props.data.name}</h1>
-        <span id="stars">{this.props.data.stars} </span>
-        <span id="reviews">{this.props.data.reviews}</span>
-        <span id="range">{this.props.data.range}</span>
-        <span id="cuisine">{this.props.data.cuisine}</span>
-        <div id="tags">{this.props.data.top.join (', ')}</div>
+        <h1>{this.props.name}</h1>
+        <span id="stars">{this.props.stars} </span>
+        <span id="reviews">{this.props.reviews}</span>
+        <span id="range">{this.props.range}</span>
+        <span id="cuisine">{this.props.cuisine}</span>
+        <div id="tags">{this.props.top.join (', ')}</div>
       </div>
     );
   }
