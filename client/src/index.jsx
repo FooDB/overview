@@ -29,6 +29,7 @@ class Overview extends React.Component {
       style: 'undefined',
       telephone: 'undefined',
       website: 'www.google.com',
+      payment_options: [],
       dress_code: 'undefined',
       chef: 'undefined',
       catering: 'undefined',
@@ -45,7 +46,7 @@ class Overview extends React.Component {
 
   componentDidMount() {
     this.getGeneralInfo();
-    // this.getPaymentInfo();
+    this.getPaymentInfo();
     // this.getCuisineInfo();
     // this.getTagsInfo();
     // this.getHoursInfo();
@@ -78,6 +79,26 @@ class Overview extends React.Component {
     })
     .catch(err => console.log(err));
   }
+
+  getPaymentInfo() {
+    axios.get(`payments/${2}`)
+    .then(result => {
+      let data = result.data;
+      console.log(data);
+
+      const options = [];
+      for(let i = 0; i < data.length; i ++) {
+        if(!options.includes(data[i].opt)) {
+          options.push(data[i].opt);
+        }
+      }
+
+      this.setState({
+        payment_options: options
+      });
+    })
+    .catch(err => console.log(err));
+  }
   
   render() {
     return (
@@ -99,6 +120,7 @@ class Overview extends React.Component {
                 style: this.state.style,
                 telephone: this.state.telephone,
                 website: this.state.website,
+                payment_options: this.state.payment_options,
                 dress_code: this.state.dress_code,
                 chef: this.state.chef,
                 catering: this.state.catering

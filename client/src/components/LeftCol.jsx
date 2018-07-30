@@ -41,7 +41,7 @@ class LeftCol extends React.Component {
 
             <div id="paymentOptions"> 
               <h2> Payment options </h2>
-              <div>{'empty'}</div>
+              <div>{this.props.data.payment_options.join(', ')}</div>
             </div>
 
             <div id="dressCode">
