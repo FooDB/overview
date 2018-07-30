@@ -5,6 +5,7 @@ import Description from './components/Description.jsx';
 import LeftCol from './components/LeftCol.jsx';
 import Map from './components/Map.jsx';
 import RightCol from './components/RightCol.jsx';
+import PrivateDining from './components/PrivateDining.jsx'
 import axios from 'axios';
 
 class Overview extends React.Component {
@@ -55,6 +56,7 @@ class Overview extends React.Component {
     axios.get(`general/${2}`)
     .then(result => {
       let data = result.data[0];
+      console.log(data);
       this.setState({
         restaurant_name: data.restaurant_name,
         description: data.description,
@@ -71,9 +73,11 @@ class Overview extends React.Component {
         latitude: data.latitude,
         longitude: data.longitude,
         addr: data.addr,
+        neighborhood: data.neighborhood, 
         cross_street: data.cross_street,
         parking: data.parking,
-        public_transport: data.public_transport
+        public_transport: data.public_transport,
+        neighborhood:data.neighborhood
       });
     })
     .catch(err => console.log(err));
@@ -106,9 +110,25 @@ class Overview extends React.Component {
             }/>
          </div>
          <div id="right">
-            <Map />
-            <RightCol />
+            <Map data = {
+              {
+                longitude: this.state.longitude,
+                latittude: this.state.latitude
+              }
+            }/>
+            <RightCol data ={
+              {
+                addr: this.state.addr,
+                neighborhood: this.state.neighborhood,           
+                cross_street: this.state.cross_street,
+                parking: this.state.parking,
+                public_transport: this.state.public_transport
+              }
+            }/>
           </div>
+        </div>
+        <div id="bottom">
+            <PrivateDining description={this.state.private_dining}/>
         </div>
       </div>
     );

@@ -20,6 +20,7 @@ CREATE TABLE General (
     latitude DECIMAL(10, 8) NOT NULL,
     longitude DECIMAL(11,8) NOT NULL,
     addr VARCHAR(1000) NOT NULL,
+    neighborhood VARCHAR(1000) NOT NULL,
     cross_street VARCHAR(1000) NOT NULL,
     parking VARCHAR(1000) NOT NULL,
     public_transport VARCHAR(1000) NOT NULL,
