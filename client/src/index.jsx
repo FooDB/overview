@@ -29,6 +29,8 @@ class Overview extends React.Component {
       //leftcol
       private_url: 'www.google.com',
       style: 'undefined',
+      cuisines: [],
+      hours:{},
       telephone: 'undefined',
       website: 'www.google.com',
       payment_options: [],
@@ -50,15 +52,46 @@ class Overview extends React.Component {
   componentDidMount() {
     this.getGeneralInfo();
     this.getPaymentInfo(); 
-    // this.getCuisineInfo();
+    this.getCuisineInfo();
     this.getTagsInfo();
-    // this.getHoursInfo();
+    this.getHoursInfo();
+  }
+
+  getCuisineInfo() {
+    axios.get(`cuisines/${2}`).then(result => {
+      let info = [];
+      for (let i = 0; i < result.data.length; i ++) {
+        let obj = result.data[i];
+        info.push(obj.cuisine);
+      }
+
+      this.setState({
+        cuisines: info
+      });
+    }).catch(err => console.log(err));
+  }
+
+  getHoursInfo() {
+    axios.get(`hours/${2}`)
+    .then(result => {
+      let data = result.data;
+      let newHours = {};
+
+      for(let i = 0; i < data.length; i ++) {
+        let obj = data[i];
+        newHours[obj.meal] = obj.day_name + ', ' + obj.time_range;
+      }
+
+      this.setState({
+        hours: newHours
+      });
+    })
+    .catch(err => console.log(err));
   }
 
   getTagsInfo() {
     axios.get(`tags/${2}`)
     .then(result => {
-      console.log(result.data);
 
       const top = [];
       const additional = [];
@@ -139,7 +172,8 @@ class Overview extends React.Component {
             stars: this.state.avg_rating,
             reviews: this.state.num_ratings,
             range: this.state.price_range,
-            top: this.state.top_tags
+            top: this.state.top_tags,
+            cuisine: this.state.cuisines[0]
           }
         }/>
         <Description description={this.state.description}/>
@@ -149,6 +183,8 @@ class Overview extends React.Component {
               {
                 private_url: this.state.private_url,
                 style: this.state.style,
+                cuisines: this.state.cuisines,
+                hours: this.state.hours,
                 telephone: this.state.telephone,
                 website: this.state.website,
                 payment_options: this.state.payment_options,

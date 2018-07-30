@@ -4,7 +4,18 @@ class LeftCol extends React.Component {
     constructor(props) {
         super(props);
     }
-    
+
+    formatHours () {
+      let str = '';
+      for (let key in this.props.data.hours) {
+        str += (key + ' \n');
+        str += (this.props.data.hours[key] + ' \n');
+        str += (`\n`);
+      }
+
+      return str;
+    }
+
 
     render() {
         return (
@@ -21,12 +32,12 @@ class LeftCol extends React.Component {
 
             <div id="cuisines">
               <h2> Cuisines </h2>
-              <div>{'empty'}</div>
+              <div>{this.props.data.cuisines.join(', ')}</div>
             </div>
 
             <div id="hours">
               <h2> Hours of operation </h2>
-              <div>{'empty'}</div>
+              <div>{this.formatHours()}</div>
             </div>
 
             <div id="telephone">
