@@ -9,7 +9,6 @@ class RightCol extends React.Component {
         return (
           <div id="rightcol">
             <div id="address">
-              <h2> Address url </h2>
               <div>{this.props.data.addr}</div>
             </div>
 
