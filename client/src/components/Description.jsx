@@ -52,4 +52,7 @@ class Description extends React.Component {
 
 const Text = props => <div id="text"> {props.text} </div>;
 
+Description.propTypes = {
+  description: PropTypes.string,
+};
 export default Description;
