@@ -1,5 +1,4 @@
 import React from 'react';
-import ColumnElement from './components/ColumnElements.jsx';
 
 const RightCol = props => (
   <div id="rightcol">

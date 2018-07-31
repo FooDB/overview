@@ -25,8 +25,4 @@ class GoogleMap extends React.Component {
   }
 }
 
-GoogleMap.propTypes = {
-  longitide: PropTypes.number,
-  latitude: PropTypes.number,
-};
 export default GoogleMap;

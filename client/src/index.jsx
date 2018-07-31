@@ -6,6 +6,7 @@ import LeftCol from './components/LeftCol.jsx';
 import GoogleMap from './components/GoogleMap.jsx';
 import RightCol from './components/RightCol.jsx';
 import PrivateDining from './components/PrivateDining.jsx';
+import ColumnElement from './components/ColumnElement.jsx';
 import defaultData from './defaultData.js';
 import axios from 'axios';
 

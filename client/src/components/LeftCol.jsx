@@ -68,4 +68,5 @@ const LeftCol = props => {
     </div>
   );
 };
+
 export default LeftCol;

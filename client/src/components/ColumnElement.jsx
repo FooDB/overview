@@ -1,9 +1,9 @@
 import React from 'react';
 
-ColumnElement.propTypes = {
-  elementId: PropTypes.string,
-  name: PropTypes.string,
-  contents: PropTypes.string,
-};
+const ColumnElement = props => (
+  <div>
+    {'To be implemented'}
+  </div>
+);
 
 export default ColumnElement;
