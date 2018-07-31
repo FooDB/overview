@@ -4,7 +4,7 @@ const RightCol = props => (
   <div id="rightcol">
 
     <div>
-      <ColumnElement id={'address'} name={'props.addr'} contents={''} />
+      <ColumnElement id={'address'} name={props.addr} contents={''} />
     </div>
     <div>
       <ColumnElement

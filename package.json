@@ -13,10 +13,16 @@
     "react-dev": "webpack -d --watch"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.0-14",
+    "@fortawesome/free-solid-svg-icons": "^5.1.0-11",
+    "@fortawesome/react-fontawesome": "0.1.0-11",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "faker": "^4.1.0",
-    "mysql": "^2.16.0"
+    "i": "^0.3.6",
+    "mysql": "^2.16.0",
+    "npm": "^6.2.0",
+    "react-fontawesome": "^1.6.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -39,6 +45,7 @@
     "prettier-eslint": "^8.8.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "static-site-generator-webpack-plugin": "^3.4.1",
     "webpack": "^4.16.1",
     "webpack-cli": "^3.1.0"
   }
