@@ -1,4 +1,5 @@
 import React from 'react';
+import ColumnElement from './ColumnElement.jsx';
 
 const LeftCol = props => {
   const formatHours = function () {
@@ -21,49 +22,73 @@ const LeftCol = props => {
         </a>
       </div>
 
-      <div id="style">
-        <h2> Dining Style </h2>
-        <div>{props.style}</div>
+      <div>
+        <ColumnElement
+          id={'style'}
+          name={'Dining Style'}
+          contents={props.style}
+        />
       </div>
 
-      <div id="cuisines">
-        <h2> Cuisines </h2>
-        <div>{props.cuisines.join (', ')}</div>
+      <div>
+        <ColumnElement
+          id={'cuisines'}
+          name={'Cuisines'}
+          contents={props.cuisines.join (', ')}
+        />
       </div>
 
-      <div id="hours">
-        <h2> Hours of operation </h2>
-        <div>{formatHours ()}</div>
+      <div>
+        <ColumnElement
+          id={'hours'}
+          name={'Hours of operation'}
+          contents={formatHours ()}
+        />
       </div>
 
-      <div id="telephone">
-        <h2> Phone number </h2>
-        <div>{props.telephone}</div>
+      <div>
+        <ColumnElement
+          id={'telephone'}
+          name={'Phone number'}
+          contents={props.telephone}
+        />
       </div>
 
-      <div id="website">
-        <h2> Website </h2>
-        <div> {props.website} </div>
+      <div>
+        <ColumnElement
+          id={'website'}
+          name={'Website'}
+          contents={props.website}
+        />
       </div>
 
-      <div id="paymentOptions">
-        <h2> Payment options </h2>
-        <div>{props.payment_options.join (', ')}</div>
+      <div>
+        <ColumnElement
+          id={'paymentOptions'}
+          name={'Payment options'}
+          contents={props.payment_options.join (', ')}
+        />
       </div>
-
-      <div id="dressCode">
-        <h2> Dress code </h2>
-        <div>{props.dress_code}</div>
+      <div>
+        <ColumnElement
+          id={'dressCode'}
+          name={'Dress code'}
+          contents={props.dress_code}
+        />
       </div>
-
-      <div id="execChef">
-        <h2> Executive chef </h2>
-        <div>{props.chef}</div>
+      <div>
+        <ColumnElement
+          id={'execChef'}
+          name={'Executive chef'}
+          contents={props.chef}
+        />
       </div>
-
-      <div id="catering">
-        <h2> Catering </h2>
-        <div>{props.catering}</div>
+      <div>
+        <ColumnElement
+          id={'catering'}
+          name={'Catering'}
+          contents={props.catering}
+        />
       </div>
     </div>
   );
