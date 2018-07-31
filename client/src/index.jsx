@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Header from './components/Header.jsx';
 import Description from './components/Description.jsx';
 import LeftCol from './components/LeftCol.jsx';
-import Map from './components/Map.jsx';
+import GoogleMap from './components/GoogleMap.jsx';
 import RightCol from './components/RightCol.jsx';
 import PrivateDining from './components/PrivateDining.jsx';
 import defaultData from './defaultData.js';
@@ -94,28 +94,7 @@ class Overview extends React.Component {
       .get (`general/${2}`)
       .then (result => {
         let data = result.data[0];
-        this.setState ({
-          restaurant_name: data.restaurant_name,
-          description: data.description,
-          telephone: data.telephone,
-          website: data.website,
-          chef: data.chef,
-          avg_rating: data.avg_rating,
-          num_ratings: data.num_ratings,
-          style: data.style,
-          dress_code: data.dress_code,
-          catering: data.catering,
-          price_range: data.price_range,
-          private_dining: data.private_dining,
-          latitude: data.latitude,
-          longitude: data.longitude,
-          addr: data.addr,
-          neighborhood: data.neighborhood,
-          cross_street: data.cross_street,
-          parking: data.parking,
-          public_transport: data.public_transport,
-          neighborhood: data.neighborhood,
-        });
+        this.setState (data);
       })
       .catch (err => console.log (err));
   }
@@ -168,7 +147,7 @@ class Overview extends React.Component {
             />
           </div>
           <div id="right">
-            <Map
+            <GoogleMap
               longitude={this.state.longitude}
               latitude={this.state.latitude}
             />

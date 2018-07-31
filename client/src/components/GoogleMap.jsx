@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Map extends React.Component {
+class GoogleMap extends React.Component {
   constructor (props) {
     super (props);
   }
@@ -25,4 +25,4 @@ class Map extends React.Component {
   }
 }
 
-export default Map;
+export default GoogleMap;
