@@ -1,4 +1,5 @@
 import React from 'react';
+import ColumnElement from './components/ColumnElements.jsx';
 
 class RightCol extends React.Component {
   constructor (props) {

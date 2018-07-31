@@ -1,5 +1,5 @@
 import React from 'react';
-
+import ColumnElement from './components/ColumnElements.jsx';
 class LeftCol extends React.Component {
   constructor (props) {
     super (props);
