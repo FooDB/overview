@@ -8,12 +8,16 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: ['env', 'react'],
-        }
-      }
-    ]
+        },
+      },
+      {
+        test: /\.css/,
+        loaders: ['style-loader', 'css-loader'],
+      },
+    ],
   },
-   output: {
+  output: {
     filename: 'bundle.js',
-    path: __dirname + '/client/dist'
-  }
+    path: __dirname + '/client/dist',
+  },
 };
