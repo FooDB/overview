@@ -1,25 +1,23 @@
 import React from 'react';
-
+import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
+import apiKey from '../apikey.js';
 class GoogleMap extends React.Component {
   constructor (props) {
     super (props);
+    console.log (props);
   }
 
-  componentDidMount () {
-    this.getMap ();
-  }
-
-  getMap () {
-    //server call
-    //make googleAPI Call
-    //render it accordingly
-    console.log ('hi');
-  }
   render () {
     return (
       <div id="map">
-        This is a map
-        {console.log (this.props)}
+        <iframe
+          title="location"
+          width="350"
+          height="280"
+          frameBorder="0"
+          src={`https://www.google.com/maps/embed/v1/view?key=${apiKey}&center=${this.props.latitude},${this.props.longitude}&zoom=10`}
+          allowFullScreen
+        />
       </div>
     );
   }

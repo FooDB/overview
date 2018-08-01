@@ -91,7 +91,7 @@ class Overview extends React.Component {
 
   getGeneralInfo () {
     axios
-      .get (`general/${2}`)
+      .get (`general/${14}`)
       .then (result => {
         let data = result.data[0];
         this.setState (data);

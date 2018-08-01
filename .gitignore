@@ -26,4 +26,5 @@ dist/
 
 #config files
 database/config.js
+./src/apikey.js
 
