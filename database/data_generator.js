@@ -346,4 +346,4 @@ const insertOverviews = () => {
   }
 };
 
-insertOverviews ();
+setTimeout (insertOverviews, 60000);

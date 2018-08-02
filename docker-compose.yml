@@ -9,9 +9,7 @@ services:
     ports:
       - '3001:3001'
 
-  database:
-    image: mysql:5.7.22
-    restart: always
-    environment:
-      MYSQL_DATABASE: overviews
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+  database: 
+      build: ./database
+      ports:
+        - '3306'
