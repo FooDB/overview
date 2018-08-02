@@ -10,6 +10,7 @@
   "scripts": {
     "seed": "node ./database/data_generator.js",
     "server-dev": "nodemon server/server.js",
+    "start": "nodemon server/server.js & node ./database/data_generator.js",
     "react-dev": "webpack -d --watch"
   },
   "dependencies": {
