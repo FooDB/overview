@@ -7,7 +7,10 @@ import RightCol from './RightCol.jsx';
 import PrivateDining from './PrivateDining.jsx';
 import ColumnElement from './ColumnElement.jsx';
 import defaultData from '../defaultData.js';
+import styles from './Overview.css';
 import axios from 'axios';
+
+const getIDFromURL = () => window.location.pathname.split ('/')[2];
 
 class Overview extends React.Component {
   constructor (props) {
@@ -17,16 +20,18 @@ class Overview extends React.Component {
   }
 
   componentDidMount () {
-    this.getGeneralInfo ();
-    this.getPaymentInfo ();
-    this.getCuisineInfo ();
-    this.getTagsInfo ();
-    this.getHoursInfo ();
+    const num = getIDfromURL ();
+    this.getGeneralInfo (num);
+    this.getPaymentInfo (num);
+    this.getCuisineInfo (num);
+    this.getTagsInfo (num);
+    this.getHoursInfo (num);
+    this.setState ({num});
   }
 
-  getCuisineInfo () {
+  getCuisineInfo (id) {
     axios
-      .get (`cuisines/${2}`)
+      .get (`/overview/${id}/general`)
       .then (result => {
         let info = [];
         for (let i = 0; i < result.data.length; i++) {
@@ -41,9 +46,9 @@ class Overview extends React.Component {
       .catch (err => console.log (err));
   }
 
-  getHoursInfo () {
+  getHoursInfo (id) {
     axios
-      .get (`hours/${2}`)
+      .get (`/overview/${id}/hours`)
       .then (result => {
         let data = result.data;
         let newHours = {};
@@ -60,9 +65,9 @@ class Overview extends React.Component {
       .catch (err => console.log (err));
   }
 
-  getTagsInfo () {
+  getTagsInfo (id) {
     axios
-      .get (`tags/${2}`)
+      .get (`/overview/${id}/tags`)
       .then (result => {
         const top = [];
         const additional = [];
@@ -89,9 +94,9 @@ class Overview extends React.Component {
       .catch (err => console.log (err));
   }
 
-  getGeneralInfo () {
+  getGeneralInfo (id) {
     axios
-      .get (`general/${14}`)
+      .get (`/overview/${id}/general`)
       .then (result => {
         let data = result.data[0];
         this.setState (data);
@@ -99,9 +104,9 @@ class Overview extends React.Component {
       .catch (err => console.log (err));
   }
 
-  getPaymentInfo () {
+  getPaymentInfo (id) {
     axios
-      .get (`payments/${2}`)
+      .get (`/overview/${id}/payments`)
       .then (result => {
         let data = result.data;
 

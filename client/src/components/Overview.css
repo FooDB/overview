@@ -1,0 +1,60 @@
+#overview-section {
+    display:flex;
+    flex-direction: column;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 300;
+    color: #2d333f;
+    width: 640px;
+    padding: 0rem 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3rem;
+}
+
+a {
+    color: #da3743;
+}
+
+
+h1 {
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: 700;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #d8d9db;
+    margin: 0 0 1rem;
+}
+
+h2 {
+    font-weight: 400; 
+}
+
+
+#addressheader {
+    color: #da3743;
+}
+
+#body {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+#description {
+    align-self: center;
+}
+button {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-size: .875rem;
+    font-weight: 500;
+    line-height: 1.43;
+    border: 1px solid #d8d9db;
+    padding: calc(.375rem - 1px) calc(1rem - 1px);
+    text-decoration: none;
+    cursor: pointer;
+    box-align: center;
+    align-self: center;
+}
+

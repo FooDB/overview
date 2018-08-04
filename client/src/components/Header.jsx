@@ -1,5 +1,6 @@
 import React from 'react';
 import Stars from './Stars.jsx';
+import styles from './Header.css';
 const Header = props => (
   <div id="header">
     <h1>{props.name}</h1>
