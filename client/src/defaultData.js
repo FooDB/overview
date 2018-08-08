@@ -4,6 +4,7 @@ const defaultData = {
   num_ratings: 0,
   price_range: 'undefined',
   top_tags: [],
+  num: 1,
 
   //description
   description: 'undefined',

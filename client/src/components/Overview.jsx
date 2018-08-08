@@ -10,17 +10,19 @@ import defaultData from '../defaultData.js';
 import styles from './Overview.css';
 import axios from 'axios';
 
-const getIDFromURL = () => window.location.pathname.split ('/')[2];
-
 class Overview extends React.Component {
   constructor (props) {
     super (props);
     this.state = defaultData;
-    this.getGeneralInfo = this.getGeneralInfo.bind (this);
+  }
+
+  getIDFromURL () {
+    return window.location.pathname.split ('/')[2];
   }
 
   componentDidMount () {
-    const num = getIDfromURL ();
+    const num = this.getIDFromURL ();
+    console.log ('hello num', num);
     this.getGeneralInfo (num);
     this.getPaymentInfo (num);
     this.getCuisineInfo (num);
@@ -31,7 +33,7 @@ class Overview extends React.Component {
 
   getCuisineInfo (id) {
     axios
-      .get (`/overview/${id}/general`)
+      .get (`/restaraunt/${id}/general`)
       .then (result => {
         let info = [];
         for (let i = 0; i < result.data.length; i++) {
@@ -48,7 +50,7 @@ class Overview extends React.Component {
 
   getHoursInfo (id) {
     axios
-      .get (`/overview/${id}/hours`)
+      .get (`/restaurant/${id}/hours`)
       .then (result => {
         let data = result.data;
         let newHours = {};
@@ -67,7 +69,7 @@ class Overview extends React.Component {
 
   getTagsInfo (id) {
     axios
-      .get (`/overview/${id}/tags`)
+      .get (`/restaurant/${id}/tags`)
       .then (result => {
         const top = [];
         const additional = [];
@@ -96,7 +98,7 @@ class Overview extends React.Component {
 
   getGeneralInfo (id) {
     axios
-      .get (`/overview/${id}/general`)
+      .get (`/restaurant/${id}/general`)
       .then (result => {
         let data = result.data[0];
         this.setState (data);
@@ -106,7 +108,7 @@ class Overview extends React.Component {
 
   getPaymentInfo (id) {
     axios
-      .get (`/overview/${id}/payments`)
+      .get (`/restaurant/${id}/payments`)
       .then (result => {
         let data = result.data;
 
