@@ -37,8 +37,9 @@ h2 {
 }
 
 #body {
+    width: 640px;
     display: flex;
-    align-content: center;
+    align-content: left;
     justify-content: center;
 }
 #description {

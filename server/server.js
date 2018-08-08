@@ -13,15 +13,14 @@ app.use ((req, res, next) => {
 
 app.use ('/', express.static (path.join (__dirname, '../client/dist')));
 app.use (
-  '/overview/:id',
+  '/restaurant/:id',
   express.static (path.join (__dirname, '../client/dist'))
 );
 app.use (parser.json ());
 app.use (parser.urlencoded ({extended: true}));
 
-app.listen (3001, () => console.log ('App listening on port 3001!'));
-
-app.get ('/overview/:id/general', (request, response) => {
+app.get ('/restaurant/:id/general', (request, response) => {
+  console.log (request.body);
   let query = `SELECT * FROM General WHERE id = ${request.params.id};`;
 
   db.retreive (query, (err, data) => {
@@ -30,7 +29,7 @@ app.get ('/overview/:id/general', (request, response) => {
   });
 });
 
-app.get ('/overview/:id/payments', (request, response) => {
+app.get ('/restaurant/:id/payments', (request, response) => {
   let query = `SELECT * FROM Payment_Options WHERE rest_id = ${request.params.id};`;
 
   db.retreive (query, (err, data) => {
@@ -39,7 +38,7 @@ app.get ('/overview/:id/payments', (request, response) => {
   });
 });
 
-app.get ('/overview/:id/cuisines', (request, response) => {
+app.get ('/restaurant/:id/cuisines', (request, response) => {
   let query = `SELECT * FROM Cuisines WHERE rest_id = ${request.params.id};`;
 
   db.retreive (query, (err, data) => {
@@ -48,7 +47,7 @@ app.get ('/overview/:id/cuisines', (request, response) => {
   });
 });
 
-app.get ('/overview/:id/tags', (request, response) => {
+app.get ('/restaurant/:id/tags', (request, response) => {
   let query = `SELECT * FROM Tags WHERE rest_id = ${request.params.id};`;
 
   db.retreive (query, (err, data) => {
@@ -65,3 +64,6 @@ app.get ('/overview/:id/hours', (request, response) => {
     response.send (data);
   });
 });
+
+const port = 3001;
+app.listen (port, () => console.log (`App listening on port ${port}!`));

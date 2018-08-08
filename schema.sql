@@ -1,7 +1,6 @@
 DROP DATABASE IF EXISTS overviews;
 CREATE DATABASE overviews;
 USE overviews;
-
 CREATE TABLE General (
     id int NOT NULL AUTO_INCREMENT,
     restaurant_name VARCHAR(1000) NOT NULL,
