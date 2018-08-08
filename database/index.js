@@ -13,7 +13,18 @@ const retreive = (query, callback) => {
   });
 };
 
+const postGeneral = (query, callback) => {
+  connection.query(query, (err) => {
+    if (err) {
+      callback(err);
+      throw err;
+    }
+    callback(null);
+  });
+};
+
 module.exports = {
   connection,
   retreive,
+  postGeneral,
 };
