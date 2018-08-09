@@ -234,37 +234,37 @@ const getRandomName = () => {
   );
 };
 
-const getRandomAddress = function () {
-  const street = faker.address.streetAddress ();
-  const city = faker.address.city ();
-  const state = faker.address.stateAbbr ();
-  const zipcode = faker.address.zipCode ();
+// const getRandomAddress = function () {
+//   const street = faker.address.streetAddress ();
+//   const city = faker.address.city ();
+//   const state = faker.address.stateAbbr ();
+//   const zipcode = faker.address.zipCode ();
 
-  return street + ' ' + city + ', ' + state + ' ' + zipcode;
-};
+//   return street + ' ' + city + ', ' + state + ' ' + zipcode;
+// };
 
 const generalInfo = () => {
   let info = {
     restaurant_name: getRandomName (),
-    description: faker.lorem.sentences (),
+    description: faker.lorem.sentences().replace(",", " "),
     telephone: faker.phone.phoneNumberFormat (),
     website: faker.internet.url (),
-    chef: faker.name.findName (),
+    chef: faker.name.firstName (),
     avg_rating: Math.floor (Math.random () * 5),
     num_ratings: Math.floor (Math.random () * 10000),
     style: faker.lorem.words (),
     dress_code: faker.lorem.words (),
-    catering: faker.lorem.sentences (),
+    catering: faker.lorem.sentences().replace(",", " "),
     price_range: faker.lorem.words (),
-    private_dining: faker.lorem.sentences (),
+    private_dining: faker.lorem.sentences().replace(",", " "),
     private_url: faker.internet.url (),
     latitude: faker.address.latitude (),
     longitude: faker.address.longitude (),
-    addr: getRandomAddress (),
+    addr: faker.address.streetAddress().replace("'", "\'"),
     neighborhood: faker.address.county (),
-    cross_street: faker.address.streetAddress (),
-    parking: faker.lorem.sentences (),
-    public_transport: faker.lorem.sentences (),
+    cross_street: faker.address.streetAddress().replace("'", "\'"),
+    parking: faker.lorem.sentences().replace(",", " "),
+    public_transport: faker.lorem.sentences().replace(",", " "),
   };
 
   return info;
@@ -274,26 +274,21 @@ const insertOverviews = () => {
   for (let i = 0; i < 100; i++) {
     //General
     let general = generalInfo ();
-
-    // let generalQuery = `INSERT INTO General (restaurant_name, description, telephone, website, chef,
-    // avg_rating, num_ratings, style, dress_code, catering, price_range, private_dining,
-    // private_url, latitude, longitude, addr, neighborhood, cross_street, parking, public_transport) 
-    // VALUES ('${general.restaurant_name}', '${general.description}', '${general.telephone}', '${general.website}', '${general.chef}',
-    // '${general.avg_rating}', '${general.num_ratings}', '${general.style}', '${general.dress_code}', '${general.catering}', '${general.price_range}', '${general.private_dining}',
-    // '${general.private_url}', '${general.latitude}', '${general.longitude}', '${general.addr}','${general.neighborhood}' ,'${general.cross_street}', '${general.parking}', '${general.public_transport}');`;
+    console.log(general);
 
     let generalQuery = `INSERT INTO General (restaurant_name, description, telephone, website, chef,
       avg_rating, num_ratings, style, dress_code, catering, price_range, private_dining,
       private_url, latitude, longitude, addr, neighborhood, cross_street, parking, public_transport) 
-      VALUES ('${general.restaurant_name}', '${general.description}', '${general.telephone}', '${general.website}', 'chef',
-      'avg_ratings', 'num_ratings', '8', '9', '10', '11', '12',
-      '13', 80.4616, 31.6101, '16','17' ,'18', '19', '20');`;
+      VALUES ('${general.restaurant_name}', '${general.description}', '${general.telephone}', '${general.website}', '${general.chef}',
+      '${general.avg_rating}', '${general.num_ratings}', '${general.style}', '${general.dress_code}', '${general.catering}', '${general.price_range}', '${general.private_dining}',
+      '${general.private_url}', '${general.latitude}', '${general.longitude}', '944 Market Street', '${general.neighborhood}', '945 Market Street', '${general.parking}', '${general.public_transport}');`;
 
     db.connection.query (generalQuery, (err, result) => {
       if (err) {
+        console.log('general', err);
         throw err;
       } else {
-        console.log ('general');
+        // console.log ('general');
       }
     });
     //Payment Options
@@ -305,7 +300,7 @@ const insertOverviews = () => {
         if (err) {
           throw err;
         } else {
-          console.log ('payments');
+          // console.log ('payments');
         }
       });
     }
@@ -318,7 +313,7 @@ const insertOverviews = () => {
         if (err) {
           throw err;
         } else {
-          console.log ('cuisines');
+          // console.log ('cuisines');
         }
       });
     }
@@ -331,7 +326,7 @@ const insertOverviews = () => {
         if (err) {
           throw err;
         } else {
-          console.log ('tags');
+          // console.log ('tags');
         }
       });
     }
@@ -346,7 +341,7 @@ const insertOverviews = () => {
         if (err) {
           throw err;
         } else {
-          console.log ('hours');
+          // console.log ('hours');
         }
       });
     }

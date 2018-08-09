@@ -3,6 +3,7 @@ const app = express ();
 const path = require ('path');
 const db = require ('../database/index.js');
 const parser = require ('body-parser');
+const faker = require ('faker');
 
 app.use ((req, res, next) => {
   res.header ('Access-Control-Allow-Origin', '*');
@@ -69,26 +70,26 @@ app.get ('/overview/:id/hours', (request, response) => {
 // generate random general info
 const generalInfo = () => {
   let info = {
-    restaurant_name: getRandomName (),
-    description: faker.lorem.sentences (),
+    restaurant_name: 'Restaurant',
+    description: faker.lorem.sentences().replace(",", " "),
     telephone: faker.phone.phoneNumberFormat (),
     website: faker.internet.url (),
-    chef: faker.name.findName (),
+    chef: faker.name.firstName (),
     avg_rating: Math.floor (Math.random () * 5),
     num_ratings: Math.floor (Math.random () * 10000),
     style: faker.lorem.words (),
     dress_code: faker.lorem.words (),
-    catering: faker.lorem.sentences (),
+    catering: faker.lorem.sentences().replace(",", " "),
     price_range: faker.lorem.words (),
-    private_dining: faker.lorem.sentences (),
+    private_dining: faker.lorem.sentences().replace(",", " "),
     private_url: faker.internet.url (),
     latitude: faker.address.latitude (),
     longitude: faker.address.longitude (),
-    addr: getRandomAddress (),
+    addr: '944 Market Street',
     neighborhood: faker.address.county (),
-    cross_street: faker.address.streetAddress (),
-    parking: faker.lorem.sentences (),
-    public_transport: faker.lorem.sentences (),
+    cross_street: '945 Market Street',
+    parking: faker.lorem.sentences().replace(",", " "),
+    public_transport: faker.lorem.sentences().replace(",", " "),
   };
 
   return info;
@@ -121,26 +122,26 @@ app.put('/api/restaurant/:id/general', (request, response) => {
   const info = generalInfo();
   const query = 
     `UPDATE General SET 
-      restaurant_name = ${info.restaurant_name},
-      description = ${info.description},
-      telephone = ${info.telephone},
-      website = ${info.website},
-      chef = ${info.chef},
-      avg_rating = ${info.avg_rating},
-      num_ratings = ${info.num_ratings},
-      style = ${info.style},
-      dress_code = ${info.dress_code},
-      catering = ${info.catering},
-      price_range = ${info.price_range},
-      private_dining = ${info.private_dining},
-      private_url = ${info.private_url},
-      latitude = ${info.latitude},
-      longitude = ${info.longitude},
-      addr = ${info.addr},
-      neighborhood = ${info.neighborhood},
-      cross_street = ${info.cross_street},
-      parking = ${info.parking},
-      public_transport = ${info.public_transport} WHERE id = ${targetId};
+      restaurant_name = '${info.restaurant_name}',
+      description = '${info.description}',
+      telephone = '${info.telephone}',
+      website = '${info.website}',
+      chef = '${info.chef}',
+      avg_rating = '${info.avg_rating}',
+      num_ratings = '${info.num_ratings}',
+      style = '${info.style}',
+      dress_code = '${info.dress_code}',
+      catering = '${info.catering}',
+      price_range = '${info.price_range}',
+      private_dining = '${info.private_dining}',
+      private_url = '${info.private_url}',
+      latitude = '${info.latitude}',
+      longitude = '${info.longitude}',
+      addr = '${info.addr}',
+      neighborhood = '${info.neighborhood}',
+      cross_street = '${info.cross_street}',
+      parking = '${info.parking}',
+      public_transport = '${info.public_transport}' WHERE id = ${targetId};
     `
 
   db.updateGeneral(query, (err) => {
