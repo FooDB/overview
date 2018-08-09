@@ -4,10 +4,10 @@
 
 ## Related Projects
 
-  - https://github.com/FEC-5-Open-Table/Overview
-  - https://github.com/FEC-5-Open-Table/Photos
-  - https://github.com/FEC-5-Open-Table/Menu
-  - https://github.com/FEC-5-Open-Table/Reviews
+  - https://github.com/FooDB/overview
+  - https://github.com/FooDB/photos-service
+  - https://github.com/FooDB/menu
+  - https://github.com/FooDB/Reviews-Module
 
 ## Table of Contents
 

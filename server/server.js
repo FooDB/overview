@@ -167,10 +167,7 @@ app.delete('/api/restaurant/:id/general', (request, response) => {
     }
     response.status(200).send('deleteGeneral ok');
   })
-
 })
-
-
 
 const port = 3001;
 app.listen (port, () => console.log (`App listening on port ${port}!`));
