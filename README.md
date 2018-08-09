@@ -4,10 +4,10 @@
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/FooDB/overview
+  - https://github.com/FooDB/photos-service
+  - https://github.com/FooDB/menu
+  - https://github.com/FooDB/Reviews-Module
 
 ## Table of Contents
 
