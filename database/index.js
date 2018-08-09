@@ -17,14 +17,36 @@ const postGeneral = (query, callback) => {
   connection.query(query, (err) => {
     if (err) {
       callback(err);
-      throw err;
+      return;
     }
     callback(null);
   });
 };
 
+const updateGeneral = (query, callback) => {
+  connection.query(query, (err) => {
+    if (err) {
+      callback(err);
+      return;
+    }
+    callback(null);
+  });
+};
+
+const deleteGeneral = (query, callback) => {
+  connection.query(query, (err) => {
+    if (err) {
+      callback(err);
+      return;
+    }
+    callback(null);
+  });
+}
+
 module.exports = {
   connection,
   retreive,
   postGeneral,
+  updateGeneral,
+  deleteGeneral,
 };

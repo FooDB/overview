@@ -31,8 +31,7 @@ CREATE TABLE Payment_Options (
     id int NOT NULL AUTO_INCREMENT,
     opt VARCHAR(1000) NOT NULL,
     rest_id int NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (rest_id) REFERENCES General(id)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE Cuisines (
@@ -40,8 +39,7 @@ CREATE TABLE Cuisines (
     cuisine VARCHAR(1000) NOT NULL,
     top_cuisine boolean NOT NULL DEFAULT 0,
     rest_id int NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (rest_id) REFERENCES General(id)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE Tags (
@@ -49,8 +47,7 @@ CREATE TABLE Tags (
     tag VARCHAR(1000) NOT NULL,
     top_tag boolean NOT NULL DEFAULT 0,
     rest_id int NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (rest_id) REFERENCES General(id)
+    PRIMARY KEY (id)
 );
 
 
@@ -60,8 +57,7 @@ CREATE TABLE Hours (
     day_name VARCHAR(1000) NOT NULL,
     time_range VARCHAR(1000) NOT NULL,
     rest_id int NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (rest_id) REFERENCES General(id)
+    PRIMARY KEY (id)
 );
 
 

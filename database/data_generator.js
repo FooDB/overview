@@ -182,7 +182,7 @@ const cuisine = [
   'italian',
   'japanese',
   'indian',
-  'cajun/creole',
+  'cajun creole',
   'pizza',
   'malayasian',
   'gastropub',
@@ -275,16 +275,23 @@ const insertOverviews = () => {
     //General
     let general = generalInfo ();
 
+    // let generalQuery = `INSERT INTO General (restaurant_name, description, telephone, website, chef,
+    // avg_rating, num_ratings, style, dress_code, catering, price_range, private_dining,
+    // private_url, latitude, longitude, addr, neighborhood, cross_street, parking, public_transport) 
+    // VALUES ('${general.restaurant_name}', '${general.description}', '${general.telephone}', '${general.website}', '${general.chef}',
+    // '${general.avg_rating}', '${general.num_ratings}', '${general.style}', '${general.dress_code}', '${general.catering}', '${general.price_range}', '${general.private_dining}',
+    // '${general.private_url}', '${general.latitude}', '${general.longitude}', '${general.addr}','${general.neighborhood}' ,'${general.cross_street}', '${general.parking}', '${general.public_transport}');`;
+
     let generalQuery = `INSERT INTO General (restaurant_name, description, telephone, website, chef,
-    avg_rating, num_ratings, style, dress_code, catering, price_range, private_dining,
-    private_url, latitude, longitude, addr, neighborhood, cross_street, parking, public_transport) 
-    VALUES ('${general.restaurant_name}', '${general.description}', '${general.telephone}', '${general.website}', '${general.chef}',
-    '${general.avg_rating}', '${general.num_ratings}', '${general.style}', '${general.dress_code}', '${general.catering}', '${general.price_range}', '${general.private_dining}',
-    '${general.private_url}', '${general.latitude}', '${general.longitude}', '${general.addr}','${general.neighborhood}' ,'${general.cross_street}', '${general.parking}', '${general.public_transport}');`;
+      avg_rating, num_ratings, style, dress_code, catering, price_range, private_dining,
+      private_url, latitude, longitude, addr, neighborhood, cross_street, parking, public_transport) 
+      VALUES ('${general.restaurant_name}', '${general.description}', '${general.telephone}', '${general.website}', 'chef',
+      'avg_ratings', 'num_ratings', '8', '9', '10', '11', '12',
+      '13', 80.4616, 31.6101, '16','17' ,'18', '19', '20');`;
 
     db.connection.query (generalQuery, (err, result) => {
       if (err) {
-        console.log (err);
+        throw err;
       } else {
         console.log ('general');
       }
@@ -296,7 +303,7 @@ const insertOverviews = () => {
 
       db.connection.query (paymentQuery, (err, result) => {
         if (err) {
-          console.log (err);
+          throw err;
         } else {
           console.log ('payments');
         }
@@ -309,7 +316,7 @@ const insertOverviews = () => {
 
       db.connection.query (cuisineQuery, (err, result) => {
         if (err) {
-          console.log (err);
+          throw err;
         } else {
           console.log ('cuisines');
         }
@@ -322,7 +329,7 @@ const insertOverviews = () => {
 
       db.connection.query (tagQuery, (err, result) => {
         if (err) {
-          console.log (err);
+          throw err;
         } else {
           console.log ('tags');
         }
@@ -337,7 +344,7 @@ const insertOverviews = () => {
 
       db.connection.query (hourQuery, (err, result) => {
         if (err) {
-          console.log (err);
+          throw err;
         } else {
           console.log ('hours');
         }

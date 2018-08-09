@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "seed": "node ./database/data_generator.js",
+    "seed": "mysql -u root < ./database/schema.sql && node ./database/data_generator.js",
     "server-dev": "nodemon server/server.js",
     "start": "node server/server.js && node ./database/data_generator.js",
     "react-dev": "webpack -d --watch"

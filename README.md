@@ -4,10 +4,10 @@
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/FEC-5-Open-Table/Overview
+  - https://github.com/FEC-5-Open-Table/Photos
+  - https://github.com/FEC-5-Open-Table/Menu
+  - https://github.com/FEC-5-Open-Table/Reviews
 
 ## Table of Contents
 

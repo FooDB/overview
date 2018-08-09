@@ -66,32 +66,39 @@ app.get ('/overview/:id/hours', (request, response) => {
   });
 });
 
-// POST handler for general
-app.post('/restaurant', (request, response) => {
+// generate random general info
+const generalInfo = () => {
   let info = {
-    restaurant_name: 'getRandomName ()',
-    description: 'faker.lorem.sentences ()',
-    telephone: 'faker.phone.phoneNumberFormat ()',
-    website: 'faker.internet.url ()',
-    chef: 'faker.name.findName ()',
-    avg_rating: 4,
-    num_ratings: 100,
-    style: 'faker.lorem.words ()',
-    dress_code: 'faker.lorem.words ()',
-    catering: 'faker.lorem.sentences ()',
-    price_range: 'faker.lorem.words ()',
-    private_dining: 'faker.lorem.sentences ()',
-    private_url: 'faker.internet.url ()',
-    latitude: 80.4616,
-    longitude: 31.6101,
-    addr: 'getRandomAddress ()',
-    neighborhood: 'faker.address.county ()',
-    cross_street: 'faker.address.streetAddress ()',
-    parking: 'faker.lorem.sentences ()',
-    public_transport: 'faker.lorem.sentences ()',
+    restaurant_name: getRandomName (),
+    description: faker.lorem.sentences (),
+    telephone: faker.phone.phoneNumberFormat (),
+    website: faker.internet.url (),
+    chef: faker.name.findName (),
+    avg_rating: Math.floor (Math.random () * 5),
+    num_ratings: Math.floor (Math.random () * 10000),
+    style: faker.lorem.words (),
+    dress_code: faker.lorem.words (),
+    catering: faker.lorem.sentences (),
+    price_range: faker.lorem.words (),
+    private_dining: faker.lorem.sentences (),
+    private_url: faker.internet.url (),
+    latitude: faker.address.latitude (),
+    longitude: faker.address.longitude (),
+    addr: getRandomAddress (),
+    neighborhood: faker.address.county (),
+    cross_street: faker.address.streetAddress (),
+    parking: faker.lorem.sentences (),
+    public_transport: faker.lorem.sentences (),
   };
+
+  return info;
+};
+
+// POST handler for general
+app.post('/api/restaurant/post/general', (request, response) => {
+  const info = generalInfo();
   
-  let query = `INSERT INTO General (restaurant_name, description, telephone, website, chef,
+  const query = `INSERT INTO General (restaurant_name, description, telephone, website, chef,
     avg_rating, num_ratings, style, dress_code, catering, price_range, private_dining,
     private_url, latitude, longitude, addr, neighborhood, cross_street, parking, public_transport) 
     VALUES ('${info.restaurant_name}', '${info.description}', '${info.telephone}', '${info.website}', '${info.chef}',
@@ -100,16 +107,67 @@ app.post('/restaurant', (request, response) => {
   
   db.postGeneral(query, (err) => {
     if (err) {
-      response.status(500).send('error');
+      console.log(err);
+      response.status(500).send('postGeneral error');
       return;
     }
-    console.log('postGeneral success');
-    response.status(200).send('ok');
+    response.status(201).send('postGeneral ok');
   });
 });
 
 // PUT handler
+app.put('/api/restaurant/:id/general', (request, response) => {
+  const targetId = request.params.id;
+  const info = generalInfo();
+  const query = 
+    `UPDATE General SET 
+      restaurant_name = ${info.restaurant_name},
+      description = ${info.description},
+      telephone = ${info.telephone},
+      website = ${info.website},
+      chef = ${info.chef},
+      avg_rating = ${info.avg_rating},
+      num_ratings = ${info.num_ratings},
+      style = ${info.style},
+      dress_code = ${info.dress_code},
+      catering = ${info.catering},
+      price_range = ${info.price_range},
+      private_dining = ${info.private_dining},
+      private_url = ${info.private_url},
+      latitude = ${info.latitude},
+      longitude = ${info.longitude},
+      addr = ${info.addr},
+      neighborhood = ${info.neighborhood},
+      cross_street = ${info.cross_street},
+      parking = ${info.parking},
+      public_transport = ${info.public_transport} WHERE id = ${targetId};
+    `
 
+  db.updateGeneral(query, (err) => {
+    if (err) {
+      console.log(err);
+      response.status(500).send('updateGeneral error');
+      return;
+    }
+    response.status(200).send('updateGeneral ok');
+  })
+})
+
+// DELETE handler
+app.delete('/api/restaurant/:id/general', (request, response) => {
+  const targetId = request.params.id;
+  const query = `DELETE from General WHERE id = ${targetId};`
+
+  db.deleteGeneral(query, (err) => {
+    if (err) {
+      console.log(err);
+      response.status(500).send('deleteGeneral error');
+      return;
+    }
+    response.status(200).send('deleteGeneral ok');
+  })
+
+})
 
 
 
