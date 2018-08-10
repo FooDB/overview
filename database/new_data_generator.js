@@ -320,6 +320,20 @@ const generalInfo = () => {
   return info;
 };
 
+const header = () => {
+  const info = generalInfo();
+  const keys = Object.keys(info);
+  let str = 'id\t';
+
+  for (let i = 0; i < keys.length; i += 1) {
+    str += keys[i] + '\t';
+  }
+
+  str = str.slice(0, str.length - 1);
+  return str;
+}
+
 module.exports = {
   generalInfo,
+  header,
 };
