@@ -45,15 +45,6 @@ app.get ('/restaurant/:id/general', (request, response) => {
   });
 });
 
-// app.get ('/overview/:id/hours', (request, response) => {
-//   let query = `SELECT * FROM Hours WHERE rest_id = ${request.params.id};`;
-
-//   db.retreive (query, (err, data) => {
-//     if (err) console.log (err);
-//     response.send (data);
-//   });
-// });
-
 // generate random general info
 const generalInfo = () => {
   let info = {

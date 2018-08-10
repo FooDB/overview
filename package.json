@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "seed": "mysql -u root < ./database/schema.sql && node ./database/data_generator.js",
+    "oldseed": "mysql -u root < ./database/schema.sql && node ./database/data_generator.js",
     "newseed": "mysql -u root < ./database/newSchema.sql && node ./database/new_data_generator.js",
     "server-dev": "nodemon server/server.js",
     "start": "node server/server.js && node ./database/data_generator.js",
