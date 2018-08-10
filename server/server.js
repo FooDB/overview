@@ -3,7 +3,7 @@ const app = express ();
 const path = require ('path');
 const db = require ('../database/index.js');
 const parser = require ('body-parser');
-const faker = require ('faker');
+const gen = require('../database/new_data_generator.js');
 
 app.use ((req, res, next) => {
   res.header ('Access-Control-Allow-Origin', '*');
@@ -20,73 +20,48 @@ app.use (
 app.use (parser.json ());
 app.use (parser.urlencoded ({extended: true}));
 
-// GET handlers
+// GET handler
 app.get ('/restaurant/:id/general', (request, response) => {
-  console.log (request.body);
   let query = `SELECT * FROM General WHERE id = ${request.params.id};`;
 
   db.retreive (query, (err, data) => {
     if (err) {
       console.log(err);
       response.status(500).send('retrieve error');
-      throw err;
+      return;
     };
-    // handle payment_options 
-    data[0].payment_options = data[0].payment_options.split(',');
-    
-    //handle cuisines
-    data[0].cuisines = data[0].cuisines.split(',');
 
-    //handle tags
-    data[0].top_tags = data[0].top_tags.split(',');
-    data[0].additional_tags = data[0].additional_tags.split(',');
-
-    //handle hours
-    data[0].hours = data[0].hours.split(',');
+    if(data[0] !== undefined) {
+      // handle payment_options 
+      data[0].payment_options = data[0].payment_options.split(',');
+      
+      //handle cuisines
+      data[0].cuisines = data[0].cuisines.split(',');
+  
+      //handle tags
+      data[0].top_tags = data[0].top_tags.split(',');
+      data[0].additional_tags = data[0].additional_tags.split(',');
+  
+      //handle hours
+      data[0].hours = data[0].hours.split(',');
+    }
 
     response.send(data);
   });
 });
 
-// generate random general info
-const generalInfo = () => {
-  let info = {
-    restaurant_name: 'Restaurant',
-    description: faker.lorem.sentences().replace(",", " "),
-    telephone: faker.phone.phoneNumberFormat (),
-    website: faker.internet.url (),
-    chef: faker.name.firstName (),
-    avg_rating: Math.floor (Math.random () * 5),
-    num_ratings: Math.floor (Math.random () * 10000),
-    style: faker.lorem.words (),
-    dress_code: faker.lorem.words (),
-    catering: faker.lorem.sentences().replace(",", " "),
-    price_range: faker.lorem.words (),
-    private_dining: faker.lorem.sentences().replace(",", " "),
-    private_url: faker.internet.url (),
-    latitude: faker.address.latitude (),
-    longitude: faker.address.longitude (),
-    addr: '944 Market Street',
-    neighborhood: faker.address.county (),
-    cross_street: '945 Market Street',
-    parking: faker.lorem.sentences().replace(",", " "),
-    public_transport: faker.lorem.sentences().replace(",", " "),
-  };
-
-  return info;
-};
-
 // POST handler for general
 app.post('/api/restaurant/post/general', (request, response) => {
-  const info = generalInfo();
+  const info = gen.generalInfo();
   
-  const query = `INSERT INTO General (restaurant_name, description, telephone, website, chef,
+  let query = `INSERT INTO General (restaurant_name, description, telephone, website, chef,
     avg_rating, num_ratings, style, dress_code, catering, price_range, private_dining,
-    private_url, latitude, longitude, addr, neighborhood, cross_street, parking, public_transport) 
+    private_url, latitude, longitude, addr, neighborhood, cross_street, parking, public_transport, payment_options, cuisines, top_tags, additional_tags, hours) 
     VALUES ('${info.restaurant_name}', '${info.description}', '${info.telephone}', '${info.website}', '${info.chef}',
     '${info.avg_rating}', '${info.num_ratings}', '${info.style}', '${info.dress_code}', '${info.catering}', '${info.price_range}', '${info.private_dining}',
-    '${info.private_url}', '${info.latitude}', '${info.longitude}', '${info.addr}','${info.neighborhood}' ,'${info.cross_street}', '${info.parking}', '${info.public_transport}');`;
-  
+    '${info.private_url}', '${info.latitude}', '${info.longitude}', '944 Market Street', '${info.neighborhood}', '945 Market Street', '${info.parking}', '${info.public_transport}',
+    '${info.payment_options}', '${info.cuisines}', '${info.top_tags}', '${info.additional_tags}', '${info.hours}');`;
+
   db.postGeneral(query, (err) => {
     if (err) {
       console.log(err);
@@ -100,7 +75,8 @@ app.post('/api/restaurant/post/general', (request, response) => {
 // PUT handler
 app.put('/api/restaurant/:id/general', (request, response) => {
   const targetId = request.params.id;
-  const info = generalInfo();
+  const info = gen.generalInfo();
+
   const query = 
     `UPDATE General SET 
       restaurant_name = '${info.restaurant_name}',
@@ -122,7 +98,12 @@ app.put('/api/restaurant/:id/general', (request, response) => {
       neighborhood = '${info.neighborhood}',
       cross_street = '${info.cross_street}',
       parking = '${info.parking}',
-      public_transport = '${info.public_transport}' WHERE id = ${targetId};
+      public_transport = '${info.public_transport}',
+      payment_options = '${info.payment_options}',
+      cuisines = '${info.cuisines}',
+      top_tags = '${info.top_tags}',
+      additional_tags = '${info.additional_tags}',
+      hours = '${info.hours}' WHERE id = ${targetId};
     `
 
   db.updateGeneral(query, (err) => {
