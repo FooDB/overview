@@ -4,12 +4,9 @@ import ColumnElement from './ColumnElement.jsx';
 const LeftCol = props => {
   const formatHours = function () {
     let str = '';
-    for (let key in props.hours) {
-      str += key + ' \n';
-      str += props.hours[key] + ' \n';
-      str += `\n`;
+    for (let i = 0; i < props.hours.length; i += 1) {
+      str += props.hours[i] + '\n';
     }
-
     return str;
   };
 
