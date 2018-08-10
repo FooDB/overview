@@ -24,76 +24,7 @@ class Overview extends React.Component {
     const num = this.getIDFromURL ();
     console.log ('hello num', num);
     this.getGeneralInfo (num);
-    this.getPaymentInfo (num);
-    this.getCuisineInfo (num);
-    this.getTagsInfo (num);
-    this.getHoursInfo (num);
     this.setState ({num});
-  }
-
-  getCuisineInfo (id) {
-    axios
-      .get (`/restaraunt/${id}/general`)
-      .then (result => {
-        let info = [];
-        for (let i = 0; i < result.data.length; i++) {
-          let obj = result.data[i];
-          info.push (obj.cuisine);
-        }
-
-        this.setState ({
-          cuisines: info,
-        });
-      })
-      .catch (err => console.log (err));
-  }
-
-  getHoursInfo (id) {
-    axios
-      .get (`/restaurant/${id}/hours`)
-      .then (result => {
-        let data = result.data;
-        let newHours = {};
-
-        for (let i = 0; i < data.length; i++) {
-          let obj = data[i];
-          newHours[obj.meal] = obj.day_name + ', ' + obj.time_range;
-        }
-
-        this.setState ({
-          hours: newHours,
-        });
-      })
-      .catch (err => console.log (err));
-  }
-
-  getTagsInfo (id) {
-    axios
-      .get (`/restaurant/${id}/tags`)
-      .then (result => {
-        const top = [];
-        const additional = [];
-        for (let i = 0; i < result.data.length; i++) {
-          let name = result.data[i].tag;
-          let isTop = result.data[i].top_tag;
-
-          if (
-            isTop === 1 &&
-            !top.includes (name) &&
-            !additional.includes (name)
-          ) {
-            top.push (name);
-          } else if (!additional.includes (name) && !top.includes (name)) {
-            additional.push (name);
-          }
-        }
-
-        this.setState ({
-          top_tags: top,
-          additional_tags: additional,
-        });
-      })
-      .catch (err => console.log (err));
   }
 
   getGeneralInfo (id) {
@@ -102,26 +33,6 @@ class Overview extends React.Component {
       .then (result => {
         let data = result.data[0];
         this.setState (data);
-      })
-      .catch (err => console.log (err));
-  }
-
-  getPaymentInfo (id) {
-    axios
-      .get (`/restaurant/${id}/payments`)
-      .then (result => {
-        let data = result.data;
-
-        const options = [];
-        for (let i = 0; i < data.length; i++) {
-          if (!options.includes (data[i].opt)) {
-            options.push (data[i].opt);
-          }
-        }
-
-        this.setState ({
-          payment_options: options,
-        });
       })
       .catch (err => console.log (err));
   }

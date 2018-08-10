@@ -28,3 +28,5 @@ dist/
 database/config.js
 client/src/apikey.js
 
+# Data
+database/names.csv

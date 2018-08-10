@@ -26,44 +26,25 @@ app.get ('/restaurant/:id/general', (request, response) => {
   let query = `SELECT * FROM General WHERE id = ${request.params.id};`;
 
   db.retreive (query, (err, data) => {
-    if (err) console.log (err);
-    response.send (data);
-  });
-});
+    if (err) {
+      console.log(err);
+      response.status(500).send('retrieve error');
+      throw err;
+    };
+    // handle payment_options 
+    data[0].payment_options = data[0].payment_options.split(',');
+    
+    //handle cuisines
+    data[0].cuisines = data[0].cuisines.split(',');
 
-app.get ('/restaurant/:id/payments', (request, response) => {
-  let query = `SELECT * FROM Payment_Options WHERE rest_id = ${request.params.id};`;
+    //handle tags
+    data[0].top_tags = data[0].top_tags.split(',');
+    data[0].additional_tags = data[0].additional_tags.split(',');
 
-  db.retreive (query, (err, data) => {
-    if (err) console.log (err);
-    response.send (data);
-  });
-});
+    //handle hours
+    data[0].hours = data[0].hours.split(',');
 
-app.get ('/restaurant/:id/cuisines', (request, response) => {
-  let query = `SELECT * FROM Cuisines WHERE rest_id = ${request.params.id};`;
-
-  db.retreive (query, (err, data) => {
-    if (err) console.log (err);
-    response.send (data);
-  });
-});
-
-app.get ('/restaurant/:id/tags', (request, response) => {
-  let query = `SELECT * FROM Tags WHERE rest_id = ${request.params.id};`;
-
-  db.retreive (query, (err, data) => {
-    if (err) console.log (err);
-    response.send (data);
-  });
-});
-
-app.get ('/overview/:id/hours', (request, response) => {
-  let query = `SELECT * FROM Hours WHERE rest_id = ${request.params.id};`;
-
-  db.retreive (query, (err, data) => {
-    if (err) console.log (err);
-    response.send (data);
+    response.send(data);
   });
 });
 
