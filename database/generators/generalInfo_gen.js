@@ -1,40 +1,30 @@
-const faker = require ('faker');
+const gen = require('../new_data_generator.js');
+const fs = require('fs');
 
-const generalInfo = () => {
-  let info = {
-    restaurant_name: 'Restaurant',
-    description: faker.lorem.sentences().replace(",", " "),
-    telephone: faker.phone.phoneNumberFormat (),
-    website: faker.internet.url (),
-    chef: faker.name.firstName (),
-    avg_rating: Math.floor (Math.random () * 5),
-    num_ratings: Math.floor (Math.random () * 10000),
-    style: faker.lorem.words (),
-    dress_code: faker.lorem.words (),
-    catering: faker.lorem.sentences().replace(",", " "),
-    price_range: faker.lorem.words (),
-    private_dining: faker.lorem.sentences().replace(",", " "),
-    private_url: faker.internet.url (),
-    latitude: faker.address.latitude (),
-    longitude: faker.address.longitude (),
-    addr: '944 Market Street',
-    neighborhood: faker.address.county (),
-    cross_street: '945 Market Street',
-    parking: faker.lorem.sentences().replace(",", " "),
-    public_transport: faker.lorem.sentences().replace(",", " "),
-  };
-
-  return info;
-};
-
-for (let i = 0; i < 1; i += 1) {
-  let general = generalInfo();
-  let output = "";
-
-  for (let prop in general) {
-    output += general[prop] + ", ";
+const genData = (start, end, nameArr) => {
+  for (let i = start; i <= end; i += 1) {
+    let general = gen.generalInfo();
+    general.restaurant_name =  nameArr[i];
+    let output = `${i}\t`;
+  
+    for (let prop in general) {
+      output += general[prop] + "\t";
+    }
+    output = output.slice(0, output.length - 1);
+    console.log(output);
   }
-  output = output.slice(0, output.length-2);
+} 
 
-  console.log(output);
-}
+fs.readFile(__dirname+ '/../names.csv', 'utf-8', (err, data) => {
+  if (err) {
+    throw err;
+  }
+
+  // header for tsv
+  const tsvHeader = gen.header();
+  console.log(tsvHeader);
+
+  // generate entries
+  const nameArr = data.split('\n');
+  genData(1, 1000000, nameArr);
+});
