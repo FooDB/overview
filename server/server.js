@@ -26,8 +26,11 @@ app.get ('/restaurant/:id/general', (request, response) => {
   let query = `SELECT * FROM General WHERE id = ${request.params.id};`;
 
   db.retreive (query, (err, data) => {
-    if (err) console.log (err);
-
+    if (err) {
+      console.log(err);
+      response.status(500).send('retrieve error');
+      throw err;
+    };
     // handle payment_options 
     data[0].payment_options = data[0].payment_options.split(',');
     
