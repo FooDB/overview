@@ -4,7 +4,7 @@ const fs = require('fs');
 const genData = (start, end, nameArr) => {
   for (let i = start; i <= end; i += 1) {
     let general = gen.generalInfo();
-    general.restaurant_name =  nameArr[i];
+    general.restaurant_name =  nameArr[i - 1];
     let output = `${i}\t`;
   
     for (let prop in general) {
@@ -26,5 +26,5 @@ fs.readFile(__dirname+ '/../names.csv', 'utf-8', (err, data) => {
 
   // generate entries
   const nameArr = data.split('\n');
-  genData(1, 1000000, nameArr);
+  genData(5000001, 10000000, nameArr);
 });

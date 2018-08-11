@@ -12,7 +12,8 @@
     "newseed": "mysql -u root < ./database/newSchema.sql && node ./database/seed_mysql.js",
     "server-dev": "nodemon server/server.js",
     "start": "node server/server.js && node ./database/data_generator.js",
-    "react-dev": "webpack -d --watch"
+    "react-dev": "webpack -d --watch",
+    "gendata": "node --max-old-space-size=4096 ./database/generators/generalInfo_gen.js -c > ./database/dataStore/general1.tsv" 
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.0-14",
