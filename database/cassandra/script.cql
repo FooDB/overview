@@ -2,7 +2,7 @@ DROP KEYSPACE IF EXISTS generalkeyspace;
 
 CREATE KEYSPACE generalkeyspace WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 1};
 
-USE generalkeyspace;
+USE generalks;
 
 CREATE TABLE IF NOT EXISTS general (
   id varchar PRIMARY KEY,

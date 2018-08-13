@@ -35,10 +35,10 @@ fs.readFile(__dirname+ '/../names.csv', 'utf-8', (err, data) => {
   }
 
   // header for tsv
-  const tsvHeader = gen.header();
-  console.log(tsvHeader);
+  // const tsvHeader = gen.header();
+  // console.log(tsvHeader);
 
   // generate entries
   const nameArr = data.split('\n');
-  genData(9000001, 10000000, nameArr);
+  genData(1, 1000000, nameArr);
 });
