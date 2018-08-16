@@ -30,5 +30,13 @@ client/src/apikey.js
 
 # Data
 database/names.csv
-database/dataStore/general.tsv.gz
-database/dataStore/expanded.tsv
+database/dataStore/general1.tsv
+database/dataStore/general2.tsv
+database/dataStore/general3.tsv
+database/dataStore/general4.tsv
+database/dataStore/general5.tsv
+database/dataStore/general6.tsv
+database/dataStore/general7.tsv
+database/dataStore/general8.tsv
+database/dataStore/general9.tsv
+database/dataStore/general10.tsv

@@ -1,0 +1,25 @@
+// queries by id
+
+// Select
+select * from general where id = 10000000;
+
+// Insert
+insert into general (id, restaurant_name, description, telephone, website, chef, avg_rating, num_ratings, style, dress_code,catering, price_range, private_dining, private_url, latitude, longitude, addr, neighborhood, cross_street, parking, public_transport, payment_options, cuisines, top_tags, additional_tags, hours) values (10000005, 'Brian5', 'Animi corporis provident. Est sapiente ea. Voluptatem nihil maiores debitis.', '936-583-7015', 'https://noelia.biz', 'Bridget', '0', '8164', 'omnis quo quae', 'iusto enim atque', 'Amet dicta aperiam tempora consectetur. Quis error iure atque doloribus. Et qui repellat repellat suscipit aut quos assumenda quia. Quibusdam nemo omnis molestiae aliquid magni debitis. Ad velit modi soluta occaecati quia fugiat quis quo quasi.', 'sequi facilis corrupti', 'Asperiores illum sit cupiditate hic aut dolores. Enim perspiciatis sequi fugiat rerum doloribus omnis velit.', 'http://dulce.org', '4.0405', '-110.7852', '284 Anne Extensions' , 'Buckinghamshire', '88639 Andy Avenue', 'Ipsa distinctio deserunt reprehenderit blanditiis ut. Nemo occaecati velit. Corporis numquam et quasi enim aperiam minus molestiae repudiandae. Necessitatibus est asperiores consequatur non dignissimos ut.', 'Nulla ut fugit porro ipsa facere odio consectetur quis impedit. Quisquam reiciendis itaque tempore aut a explicabo sed adipisci eveniet.', 'Visa,Discover,Mastercard,American Express', 'california,gastropub,pizza,american new,steakhouse,indian,thai,cajun creole,mediteranean', 'debitis.,Quaerat,quia', 'cupiditate,quia,debitis.,vel,unde', 'Lunch: Monday 5PM - 2AM,Breakfast: Saturday 5PM - 2AM');
+
+// Update
+update general set restaurant_name = 'Tony' where id = 10000005;
+
+// Delete
+delete from general where id = 10000004;
+
+
+// queries by name
+
+// Select
+select * from general where restaurant_name = 'Aa Aaronical';
+
+// Update
+update general set chef = 'Edward1' where restaurant_name = 'Brian5';
+
+// Delete
+delete from general where restaurant_name = 'Brian1';
