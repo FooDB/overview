@@ -14,10 +14,10 @@
     "start": "node server/server.js && node ./database/data_generator.js",
     "react-dev": "webpack -d --watch",
     "gendata": "node --max-old-space-size=4096 ./database/generators/generalInfo_gen.js -c > ./database/dataStore/general1.tsv",
-    "setupCass": "source './database/cassandra/script.cql'",
+    "setupCass": "source './database/cassandra/script2.cql'",
     "seedCass": "time cqlsh -u cassandra -p cassandra -f './database/cassandra/script.cql'",
     "outputCass": "copy general (id, restaurant_name, description, telephone, website, chef, avg_rating, num_ratings, style, dress_code,catering, price_range, private_dining, private_url, latitude, longitude, addr, neighborhood, cross_street, parking, public_transport, payment_options, cuisines, top_tags, additional_tags, hours) to './database/cassandra/testoutput.tsv' WITH DELIMITER='\t';",
-    "seedPost": "dropdb generaldb && createdb generaldb && psql generaldb  -a -f './database/postgres/script.sql' && psql generaldb"
+    "seedPost": "dropdb generaldb && createdb generaldb && time psql generaldb  -a -f './database/postgres/script.sql' && psql generaldb"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.0-14",

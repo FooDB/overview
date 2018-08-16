@@ -40,5 +40,5 @@ fs.readFile(__dirname+ '/../names.csv', 'utf-8', (err, data) => {
 
   // generate entries
   const nameArr = data.split('\n');
-  genData(1, 1000000, nameArr);
+  genData(1, 2, nameArr);
 });
