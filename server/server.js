@@ -12,7 +12,7 @@ app.use ((req, res, next) => {
   next ();
 });
 
-app.use ('/', express.static (path.join (__dirname, '../client/dist')));
+// app.use ('/', express.static (path.join (__dirname, '../client/dist')));
 app.use (
   '/restaurant/:id',
   express.static (path.join (__dirname, '../client/dist'))
@@ -22,7 +22,7 @@ app.use (parser.urlencoded ({extended: true}));
 
 // GET handler
 app.get ('/restaurant/:id/general', (request, response) => {
-  let query = `SELECT * FROM General WHERE id = ${request.params.id};`;
+  let query = `SELECT * FROM general WHERE id = ${request.params.id};`;
 
   db.retreive (query, (err, data) => {
     if (err) {
@@ -54,10 +54,10 @@ app.get ('/restaurant/:id/general', (request, response) => {
 app.post('/api/restaurant/post/general', (request, response) => {
   const info = gen.generalInfo();
   
-  let query = `INSERT INTO General (restaurant_name, description, telephone, website, chef,
+  let query = `INSERT INTO General (id, restaurant_name, description, telephone, website, chef,
     avg_rating, num_ratings, style, dress_code, catering, price_range, private_dining,
     private_url, latitude, longitude, addr, neighborhood, cross_street, parking, public_transport, payment_options, cuisines, top_tags, additional_tags, hours) 
-    VALUES ('${info.restaurant_name}', '${info.description}', '${info.telephone}', '${info.website}', '${info.chef}',
+    VALUES ('${info.id}','${info.restaurant_name}', '${info.description}', '${info.telephone}', '${info.website}', '${info.chef}',
     '${info.avg_rating}', '${info.num_ratings}', '${info.style}', '${info.dress_code}', '${info.catering}', '${info.price_range}', '${info.private_dining}',
     '${info.private_url}', '${info.latitude}', '${info.longitude}', '944 Market Street', '${info.neighborhood}', '945 Market Street', '${info.parking}', '${info.public_transport}',
     '${info.payment_options}', '${info.cuisines}', '${info.top_tags}', '${info.additional_tags}', '${info.hours}');`;

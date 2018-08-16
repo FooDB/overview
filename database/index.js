@@ -1,20 +1,27 @@
-const mysql = require ('mysql');
-const config = require ('./config.js');
+const { Pool } = require('pg');
 
-const connection = mysql.createConnection (config);
+const config = {
+  user: 'Brian',
+  password: '',
+  host: 'localhost',
+  database: 'generaldb',
+  port: 5432,
+};
+
+const pool = new Pool(config);
 
 const retreive = (query, callback) => {
-  connection.query (query, (err, data) => {
+  pool.query (query, (err, data) => {
     if (err) {
       console.log (err, 'error');
     } else {
-      callback (null, data);
+      callback (null, data['rows']);
     }
   });
 };
 
 const postGeneral = (query, callback) => {
-  connection.query(query, (err) => {
+  pool.query(query, (err) => {
     if (err) {
       callback(err);
       return;
@@ -22,31 +29,62 @@ const postGeneral = (query, callback) => {
     callback(null);
   });
 };
-
-const updateGeneral = (query, callback) => {
-  connection.query(query, (err) => {
-    if (err) {
-      callback(err);
-      return;
-    }
-    callback(null);
-  });
-};
-
-const deleteGeneral = (query, callback) => {
-  connection.query(query, (err) => {
-    if (err) {
-      callback(err);
-      return;
-    }
-    callback(null);
-  });
-}
 
 module.exports = {
-  connection,
   retreive,
   postGeneral,
-  updateGeneral,
-  deleteGeneral,
 };
+
+
+// const mysql = require ('mysql');
+// const config = require ('./config.js');
+
+// const connection = mysql.createConnection (config);
+
+// const retreive = (query, callback) => {
+//   connection.query (query, (err, data) => {
+//     if (err) {
+//       console.log (err, 'error');
+//     } else {
+//       callback (null, data);
+//     }
+//   });
+// };
+
+// const postGeneral = (query, callback) => {
+//   connection.query(query, (err) => {
+//     if (err) {
+//       callback(err);
+//       return;
+//     }
+//     callback(null);
+//   });
+// };
+
+// const updateGeneral = (query, callback) => {
+//   connection.query(query, (err) => {
+//     if (err) {
+//       callback(err);
+//       return;
+//     }
+//     callback(null);
+//   });
+// };
+
+// const deleteGeneral = (query, callback) => {
+//   connection.query(query, (err) => {
+//     if (err) {
+//       callback(err);
+//       return;
+//     }
+//     callback(null);
+//   });
+// }
+
+// module.exports = {
+//   connection,
+//   retreive,
+//   postGeneral,
+//   updateGeneral,
+//   deleteGeneral,
+// };
