@@ -288,8 +288,11 @@ const getRandomHours = () => {
   return str;
 }
 
+let count = 10000000;
 const generalInfo = () => {
+  count++;
   let info = {
+    id: count,
     restaurant_name: getRandomName (),
     description: faker.lorem.sentences().replace(",", " "),
     telephone: faker.phone.phoneNumberFormat (),

@@ -32,6 +32,7 @@ class Overview extends React.Component {
       .get (`/restaurant/${id}/general`)
       .then (result => {
         let data = result.data[0];
+        console.log('axios data', data);
         this.setState (data);
       })
       .catch (err => console.log (err));
