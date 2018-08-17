@@ -16,7 +16,8 @@
     "gendata": "node --max-old-space-size=4096 ./database/generators/generalInfo_gen.js -c > ./database/dataStore/general1.tsv",
     "seedCass": "time cqlsh -u cassandra -p cassandra -f './database/cassandra/script.cql'",
     "Cass2": "source './database/cassandra/script2.cql'",
-    "seedPost": "dropdb generaldb && createdb generaldb && time psql generaldb  -a -f './database/postgres/script.sql' && psql generaldb"
+    "seedPost": "dropdb generaldb && createdb generaldb && time psql generaldb  -a -f './database/postgres/script.sql' && psql generaldb",
+    "readSiege": "node ./stresstest/readsiege.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.0-14",
@@ -38,11 +39,13 @@
     "i": "^0.3.6",
     "mapbox-gl": "^0.47.0",
     "mysql": "^2.16.0",
+    "newrelic": "^4.8.0",
     "nodemon": "^1.18.3",
     "pg": "^7.4.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-fontawesome": "^1.6.1",
+    "siege": "^0.2.0",
     "static-site-generator-webpack-plugin": "^3.4.1",
     "style-loader": "^0.21.0",
     "webpack": "^4.16.1",
