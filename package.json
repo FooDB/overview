@@ -2,7 +2,7 @@
   "name": "Overview",
   "version": "",
   "description": "Module for Overview like OpenTable",
-  "author": "Shruti Rajagopal",
+  "author": "Brian So",
   "license": "",
   "engines": {
     "node": ">=6.13.0"
@@ -17,7 +17,7 @@
     "seedCass": "time cqlsh -u cassandra -p cassandra -f './database/cassandra/script.cql'",
     "Cass2": "source './database/cassandra/script2.cql'",
     "seedPost": "dropdb generaldb && createdb generaldb && time psql generaldb  -a -f './database/postgres/script.sql' && psql generaldb",
-    "readSiege": "node ./stresstest/readsiege.js"
+    "readSiege": "time node ./stresstest/readsiege.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.0-14",
