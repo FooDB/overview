@@ -5,6 +5,7 @@ const path = require ('path');
 const db = require ('../database/index.js');
 const parser = require ('body-parser');
 const gen = require('../database/new_data_generator.js');
+const redis = require('redis');
 
 if (cluster.isMaster) {
   // Count the machine's CPUs
@@ -23,6 +24,12 @@ if (cluster.isMaster) {
   });
 
 } else {
+  const client = redis.createClient();
+
+  // handle client error
+  client.on("error", function (err) {
+    console.log("Error " + err);
+  });
 
   const app = express();
 
@@ -41,8 +48,18 @@ if (cluster.isMaster) {
   app.use (parser.json ());
   app.use (parser.urlencoded ({extended: true}));
   
-  // GET handler
-  app.get ('/restaurant/:id/general', (request, response) => {
+  // Redis logic
+  const getCache = (request, response) => {
+    client.get(request.params.id, (err, result) => {
+      if (result) {
+        response.send(result);
+      } else {
+        getGeneral(request,response);
+      }
+    })
+  }
+
+  const getGeneral = (request, response) => {
     let query = `SELECT * FROM general WHERE id = ${request.params.id};`;
   
     db.retreive (query, (err, data) => {
@@ -66,10 +83,15 @@ if (cluster.isMaster) {
         //handle hours
         data[0].hours = data[0].hours.split(',');
       }
-  
+      // store in cache
+      client.set(request.params.id, JSON.stringify(data));
+
       response.send(data);
     });
-  });
+  }
+
+  // GET handler
+  app.get ('/restaurant/:id/general', getCache);
   
   // POST handler for general
   app.post('/api/restaurant/post/general', (request, response) => {
@@ -158,4 +180,3 @@ if (cluster.isMaster) {
   // log workers
   console.log(`Worker ${cluster.worker.id} running!`);
 }
-
