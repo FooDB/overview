@@ -42,4 +42,4 @@ database/dataStore/general9.tsv
 database/dataStore/general10.tsv
 
 # New Relic
-newrelic.js
+./newrelic.js
