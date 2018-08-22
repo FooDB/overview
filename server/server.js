@@ -40,7 +40,6 @@ if (cluster.isMaster) {
     next ();
   });
   
-  // app.use ('/', express.static (path.join (__dirname, '../client/dist')));
   app.use (
     '/restaurant/:id',
     express.static (path.join (__dirname, '../client/dist'))

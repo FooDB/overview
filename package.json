@@ -10,7 +10,7 @@
   "scripts": {
     "oldseed": "mysql -u root < ./database/schema.sql && node ./database/data_generator.js",
     "newseed": "mysql -u root < ./database/newSchema.sql && node ./database/seed_mysql.js",
-    "start": "node server/server.js && node ./database/data_generator.js",
+    "start": "node server/server.js",
     "server-dev": "nodemon server/server.js",
     "react-dev": "webpack -d --watch",
     "gendata": "node --max-old-space-size=4096 ./database/generators/generalInfo_gen.js -c > ./database/dataStore/general1.tsv",
