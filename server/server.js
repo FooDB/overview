@@ -61,7 +61,7 @@ if (cluster.isMaster) {
   const getGeneral = (request, response) => {
     let query = `SELECT * FROM general WHERE id = ${request.params.id};`;
   
-    db.retreive (query, (err, data) => {
+    db.retrieve (query, (err, data) => {
       if (err) {
         console.log(err);
         response.status(500).send('retrieve error');

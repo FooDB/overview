@@ -13,7 +13,7 @@ const config = {
 
 const pool = new Pool(config);
 
-const retreive = (query, callback) => {
+const retrieve = (query, callback) => {
   pool.query (query, (err, data) => {
     if (err) {
       console.log (err, 'error');
@@ -34,6 +34,6 @@ const postGeneral = (query, callback) => {
 };
 
 module.exports = {
-  retreive,
+  retrieve,
   postGeneral,
 };
