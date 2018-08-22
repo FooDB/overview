@@ -40,7 +40,6 @@ if (cluster.isMaster) {
     next ();
   });
   
-  // app.use ('/', express.static (path.join (__dirname, '../client/dist')));
   app.use (
     '/restaurant/:id',
     express.static (path.join (__dirname, '../client/dist'))
@@ -62,7 +61,7 @@ if (cluster.isMaster) {
   const getGeneral = (request, response) => {
     let query = `SELECT * FROM general WHERE id = ${request.params.id};`;
   
-    db.retreive (query, (err, data) => {
+    db.retrieve (query, (err, data) => {
       if (err) {
         console.log(err);
         response.status(500).send('retrieve error');
