@@ -43,3 +43,6 @@ database/dataStore/general10.tsv
 
 # New Relic
 newrelic.js
+
+# Loader
+loader.js
